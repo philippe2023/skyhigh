@@ -1,0 +1,7 @@
+[
+{"id":1,"user_id":1,"proposed_trip_id":"NULL","empty_leg_id":1},
+{"id":2,"user_id":1,"proposed_trip_id":2,"empty_leg_id":"NULL"},
+{"id":3,"user_id":1,"proposed_trip_id":3,"empty_leg_id":"NULL"},
+{"id":4,"user_id":1,"proposed_trip_id":"NULL","empty_leg_id":4},
+{"id":5,"user_id":1,"proposed_trip_id":5,"empty_leg_id":"NULL"}
+]
