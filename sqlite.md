@@ -7,7 +7,7 @@ On windows all commands start with `sqlite3.exe` instead of `sqlite3`.
 
 # create database
 ```bash
-sqlite3 skyhigh_dev.db < create_and_seed_tables.sql
+sqlite3 skyhigh_dev.sqlite < create_and_seed_tables.sql
 ```
 
 # export data to json
