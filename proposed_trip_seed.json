@@ -1,0 +1,7 @@
+[
+{"id":1,"departure":"Rome","user_id":1,"destination":"Cologne","departure_date":1691702696},
+{"id":2,"departure":"Miami","user_id":2,"destination":"New York","departure_date":1689024317},
+{"id":3,"departure":"Palma","user_id":3,"destination":"Madrid","departure_date":1691778296},
+{"id":4,"departure":"Reykjavik","user_id":4,"destination":"London","departure_date":1691875496},
+{"id":5,"departure":"Dubai","user_id":5,"destination":"Beijing","departure_date":1690910696}
+]
