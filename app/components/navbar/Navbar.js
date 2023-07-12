@@ -4,8 +4,6 @@ import Container from "../container";
 import Logo from "./Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
-import Link from "next/link";
-
 
 function Navbar() {
     return (
