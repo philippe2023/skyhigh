@@ -1,7 +1,7 @@
 [
-{"id":1,"departure":"Cologne","destination":"Rome","departure_date":1689024317,"max_seats":10,"available_seats":2,"price":1000000,"currency":"EUR"},
-{"id":2,"departure":"New York","destination":"Miami","departure_date":1691702696,"max_seats":3,"available_seats":3,"price":234500,"currency":"EUR"},
-{"id":3,"departure":"Madrid","destination":"Palma","departure_date":1690910696,"max_seats":6,"available_seats":1,"price":182300,"currency":"EUR"},
-{"id":4,"departure":"London","destination":"Reykjavik","departure_date":1691778296,"max_seats":12,"available_seats":7,"price":656700,"currency":"EUR"},
-{"id":5,"departure":"Beijing","destination":"Dubai","departure_date":1691875496,"max_seats":8,"available_seats":0,"price":738200,"currency":"EUR"}
+{"id":1,"departure":"Cologne","destination":"Rome","departure_date":1689024317,"max_seats":10,"available_seats":2,"price":1000000,"currency":"EUR","featured":1},
+{"id":2,"departure":"New York","destination":"Miami","departure_date":1691702696,"max_seats":3,"available_seats":3,"price":234500,"currency":"EUR","featured":1},
+{"id":3,"departure":"Madrid","destination":"Palma","departure_date":1690910696,"max_seats":6,"available_seats":1,"price":182300,"currency":"EUR","featured":1},
+{"id":4,"departure":"London","destination":"Reykjavik","departure_date":1691778296,"max_seats":12,"available_seats":7,"price":656700,"currency":"EUR","featured":0},
+{"id":5,"departure":"Beijing","destination":"Dubai","departure_date":1691875496,"max_seats":8,"available_seats":0,"price":738200,"currency":"EUR","featured":0}
 ]
