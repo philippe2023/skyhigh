@@ -8,7 +8,7 @@ function SearchBar() {
             <button onClick={() => setIsSearchActivated(true)}>
             <p className="font-bold">Where?</p>
                 {
-                    setIsSearchActivated ? ( <input type="text" placeholder="Search destinations" className="text-slate-800 bg-transparent border-none outline-none" />) : (
+                    setIsSearchActivated ? ( <input type="text" placeholder="Search destinations" className="text-slate-900 bg-transparent border-none outline-none leading-6 placeholder-slate-400 dark:text-white" />) : (
                         <div>
                             <p className="text-slate-600">Search destination</p>
                         </div>
