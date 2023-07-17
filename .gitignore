@@ -36,3 +36,8 @@ next-env.d.ts
 
 # database
 *.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# vscode settings
+.vscode
