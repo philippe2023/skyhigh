@@ -18,7 +18,7 @@ function UserMenu() {
                     <TbWorld />
                 </div>
                 <div className="dropdown dropdown-bottom dropdown-end">
-                    <label tabindex="0">
+                    <label tabIndex="0">
                         <div className="p-4 md:py-1 md-px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition">
                             <AiOutlineMenu />
                             <div className="hidden md:block">
@@ -26,7 +26,7 @@ function UserMenu() {
                             </div>
                         </div>
                     </label>
-                    <div tabindex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 cursor-pointer">
+                    <div tabIndex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 cursor-pointer">
                         <MenuItem item="Sign in" />
                         <MenuItem item="Sign up" />
                         <MenuItem item="Propose a trip" />
