@@ -12,7 +12,7 @@ function UserMenu() {
             className="relative">
             <div className="flex flex-row items-center gap-3">
                 <div className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-slate-800 hover:text-gray-50 transition curser-pointer">
-                    Propose a trip
+                    <Link href="/propose-trip">Propose a trip</Link>
                 </div>
                 <div className="hidden md:block text-lg font-bold py-3 px-4 rounded-full hover:bg-slate-800 hover:text-gray-50 transition curser-pointer">
                     <TbWorld />
