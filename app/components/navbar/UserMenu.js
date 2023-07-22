@@ -13,7 +13,7 @@ function UserMenu() {
             className="relative">
             <div className="flex flex-row items-center gap-3">
                 <div className="hidden md:block btn bg-white normal-case border-none text-sm font-semibold py-3 px-4 rounded-full hover:bg-slate-800 hover:text-gray-50 transition curser-pointer dark:bg-gray-900 dark:text-gray-300">
-                    Propose a trip
+                    <Link href="/propose-trip">Propose a trip</Link>
                 </div>
                 <div onClick={()=>window.my_modal_2.showModal()} className="btn bg-white border-none dropdown dropdown-end hidden md:block text-lg font-bold py-3 px-4 rounded-full hover:bg-slate-800 hover:text-gray-50 transition curser-pointer dark:bg-gray-900 dark:text-gray-300">
                     <TbWorld />

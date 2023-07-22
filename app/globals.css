@@ -5,3 +5,8 @@
 html, body, :root {
   height: 100%;
 }
+
+/* Hide "placeholder" for select element */
+option[value=""][disabled] {
+  display: none;
+}
