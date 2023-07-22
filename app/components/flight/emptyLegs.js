@@ -4,7 +4,7 @@ import Link from "next/link";
 import { db } from "../../_utils/database";
 
 function getFeaturedLegs() {
-  const featured = db.prepare(`SELECT * from empty_leg WHERE featured=TRUE`).all();
+  const featured = db.prepare("SELECT id, departure, destination, price, STRFTIME('%Y-%m-%d', departure_date, 'unixepoch') AS date, max_seats from empty_leg WHERE featured=TRUE").all();
   return featured;
 }
 
@@ -26,13 +26,8 @@ function EmptyLegs() {
                 <div className="my-8 border-gray-200 dark:border-gray-700">
                     <div className="grid gap-8 mt-8 sm:grid-cols-2 lg:grid-cols-4 ">
                             {featured.map(city => (
-                                <EmptyLegCard city={city}/>
+                                <EmptyLegCard key={city.id} city={city}/>
                             ))}
-                            
-                            {/* <EmptyLegCard />
-                            <EmptyLegCard />
-                            <EmptyLegCard />
-                            <EmptyLegCard /> */}
                     </div>
                 </div>
             </div>
