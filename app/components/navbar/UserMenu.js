@@ -40,7 +40,7 @@ function UserMenu() {
                         </div>
                     </label>
 
-                    <div tabindex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 cursor-pointer">
+                    <div tabIndex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 cursor-pointer">
                         <Link href="../user/signin">
                             <MenuItem item="Sign in" />
                         </Link>
