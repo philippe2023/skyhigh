@@ -1,7 +1,14 @@
 import ProposedCard from "./proposedCard";
 import Link from "next/link";
+import { db } from "../../_utils/database";
+
+function proposedTrips() {
+    const flights = db.prepare("SELECT id, departure, destination, STRFTIME('%Y-%m-%d', departure_date, 'unixepoch') AS date, price from proposed_trip WHERE featured=TRUE").all();
+    return flights;
+}
 
 function ProposedJet() {
+    const flights = proposedTrips();
     return (
         <div className=" bg-white dark:bg-gray-900 dark:text-gray-300">
         <div className="container px-6 py-1 mx-auto">
@@ -17,11 +24,9 @@ function ProposedJet() {
             </div>
             <div className="my-8 border-gray-200 dark:border-gray-700"></div>
                 <div className="grid gap-8 mt-8 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
-                    <ProposedCard />
-                    <ProposedCard />
-                    <ProposedCard />
-                    <ProposedCard />
-                    <ProposedCard />
+                {flights.map(e => ( 
+                    <ProposedCard key={e.id} flight={e} />
+                ))}                    
                 </div>
             </div>
         </div>
