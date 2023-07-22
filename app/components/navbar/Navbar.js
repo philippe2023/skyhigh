@@ -7,7 +7,7 @@ import UserMenu from "./UserMenu";
 
 function Navbar() {
     return (
-        <div className="fixed w-full bg-white z-10 shadow-sm dark:bg-gray-900 dark:text-gray-300">
+        <div className="fixed top-0 left-0 right-0 w-full bg-white z-10 shadow-sm dark:bg-gray-900 dark:text-gray-300">
             <div className="py-4 border-b-[1px]">
                 <Container>
                     <div className="flex flex-row items-center justify-between gap-3 md:gap-0">

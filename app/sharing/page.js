@@ -1,10 +1,34 @@
+import ProposedCard from "../components/flight/proposedCard";
+
 function Sharing() {
     return (
-        <div className="container">
-            <div className="mx-32 my-auto h-full py-64">
-                <h1 className="mx-auto">Here you can find sharing flights</h1> 
+            <div className="bg-white dark:bg-gray-900">
+                <div className="container px-6 py-1 mx-auto">
+                    <div className="grid gap-8 mt-8 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                        <ProposedCard />
+                    </div>
+                </div>
             </div>
-        </div>
+
     );
 }
 

@@ -5,8 +5,8 @@ import Image from "next/image";
 
 function Footer() {
     return (
-        <div className="bg-white dark:bg-gray-900">
-            <div className="container px-6 py-8 mx-auto">
+        <div className="bg-white dark:bg-gray-900 pt-24">
+            <div className="container px-6 py-6 mx-auto">
                 <hr className="my-6 border-gray-200 md:my-10 dark:border-gray-700" />
                 <div className="flex flex-col items-center sm:flex-row sm:justify-between">
                     <p className="text-sm text-gray-500 dark:text-gray-300">© Copyright 2023. All Rights Reserved.</p>
