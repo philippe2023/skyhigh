@@ -50,24 +50,32 @@ async function addTrip(data) {
     redirect('/about');
 }
 
-export default function PorposeTrip() {
+export default function ProposeTrip() {
     return (
-        <div className="container">
-            <div className="mx-32 my-auto h-full py-64">
-                <h1 className="mx-auto text-center text-7xl">Post a travel route and invite people to join.</h1>
-                <form action={addTrip} className="flex mt-8 mb-8">
-                    <input type="text" name="departure" placeholder="From where?" required className="input input-bordered w-full max-w-xs" />
-                    <input type="text" name="destination" placeholder="Where to?" required className="input input-bordered w-full max-w-xs" />
-                    <select name="plane" defaultValue="" required className="input input-bordered w-full max-w-xs" >
-                        <option value="" disabled>Select plane</option>
-                        <option value="cessna">Cessna</option>
-                    </select>
-                    <input type="date" name="departure_date" required className="input input-bordered w-full max-w-xs" />
-                    <input type="number" name="no_of_passengers" defaultValue="1" required className="input input-bordered w-full max-w-xs" />
-                    <button type="submit" className="btn">Plan Flight</button>
-                </form>
-                <EmptyLegs />
+        <div className="container mx-auto my-auto">
+            <div class="w-full bg-center bg-cover h-[30rem]" style={{backgroundImage: 'url(/images/Hero.png)'}}>
+                <div class="flex items-center justify-center w-full h-full">
+                    <div class="text-center">
+                        <h1 class="text-3xl font-semibold lg:text-4xl dark:text-gray-200"><span class="text-blue-400">Post</span> a travel route and <span class="text-blue-400">invite</span> people to join.</h1>
+                        <form action={addTrip} className="">
+                            <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-4  md:grid-cols-2 xl:grid-cols-5">
+                                <input type="text" name="departure" placeholder="From where?" required className="input input-bordered w-full max-w-xs mx-auto" />
+                                <input type="text" name="destination" placeholder="Where to?" required className="input input-bordered w-full max-w-xs mx-auto" />
+                                <select name="plane" defaultValue="" required className="input input-bordered w-full max-w-xs mx-auto" >
+                                    <option value="" disabled>Select plane</option>
+                                    <option value="cessna">Cessna</option>
+                                </select>
+                                <input type="date" name="departure_date" required className="input input-bordered w-full max-w-xs mx-auto" />
+                                <input type="number" name="no_of_passengers" defaultValue="1" required className="input input-bordered w-full max-w-xs mx-auto" />
+                            </div>
+                            <div className="m-8">
+                                <button type="submit" className="btn">Plan Flight</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
+            <EmptyLegs />
         </div>
     );
 }
