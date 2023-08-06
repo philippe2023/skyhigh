@@ -1,7 +1,7 @@
 function Header() {
     return (
         
-        <div className="container mx-auto mb-5 sm:mb-10 md:mb-15 bg-fixed w-11/12 h-fit bg-no-repeat overflow-none" style={{backgroundImage: 'url(/images/Hero.png)'}}>
+        <div className="w-full bg-center bg-cover container h-[30rem] mx-auto mb-5 sm:mb-10 md:mb-15 bg-fixed bg-no-repeat overflow-none" style={{backgroundImage: 'url(/images/Hero.png)'}}>
             <div className="relative">
                 <div className="px-4 sm:px-6 md:px-8">
                     <div className="relative max-w-5xl mx-auto py-20 sm:pt-24 lg:py-28">
