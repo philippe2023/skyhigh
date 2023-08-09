@@ -1,23 +1,25 @@
-'use client'
-
 import { AiOutlineMenu } from 'react-icons/ai';
-import { TbWorld } from 'react-icons/tb'
+import { TbWorld } from 'react-icons/tb';
 import Avatar from '../Avatar';
 import MenuItem from './MenuItem';
 import Link from 'next/link';
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../api/auth/[...nextauth]/route";
 
-
-function UserMenu() {
+async function UserMenu() {
+    const session = await getServerSession(authOptions);
     return (
-        <div 
+        <>
+        {session ? (
+            <div 
             className="relative">
             <div className="flex flex-row items-center gap-3">
                 <div className="hidden md:block btn bg-white normal-case border-none text-sm font-semibold py-3 px-4 rounded-full hover:bg-slate-800 hover:text-gray-50 transition curser-pointer dark:bg-gray-900 dark:text-gray-300">
                     <Link href="/propose-trip">Propose a trip</Link>
                 </div>
-                <div onClick={()=>window.my_modal_2.showModal()} className="btn bg-white border-none dropdown dropdown-end hidden md:block text-lg font-bold py-3 px-4 rounded-full hover:bg-slate-800 hover:text-gray-50 transition curser-pointer dark:bg-gray-900 dark:text-gray-300">
+                {/* <div onClick={()=>window.my_modal_2.showModal()} className="btn bg-white border-none dropdown dropdown-end hidden md:block text-lg font-bold py-3 px-4 rounded-full hover:bg-slate-800 hover:text-gray-50 transition curser-pointer dark:bg-gray-900 dark:text-gray-300">
                     <TbWorld />
-                </div>
+                </div> */}
                 <dialog id="my_modal_2" className="modal">
                     <form method="dialog" className="modal-box">
                         <div className="tabs">
@@ -41,11 +43,8 @@ function UserMenu() {
                     </label>
 
                     <div tabIndex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 cursor-pointer">
-                        <Link href="../user/signin">
-                            <MenuItem item="Sign in" />
-                        </Link>
-                        <Link href="../user/signup">
-                            <MenuItem item="Sign up" />
+                        <Link href="/api/auth/signout">
+                            <MenuItem item="Sign out" />
                         </Link>
                         <hr className="border-gray-200 dark:border-gray-700 " />
 
@@ -61,6 +60,14 @@ function UserMenu() {
                 </div>
             </div>
         </div>
+        ) : (
+            <div className="flex flex-row items-center gap-3">
+                <div className="hidden md:block btn bg-white normal-case border-none text-sm font-semibold py-3 px-4 rounded-full hover:bg-slate-800 hover:text-gray-50 transition curser-pointer dark:bg-gray-900 dark:text-gray-300">
+                    <Link href="/api/auth/signin">Log in</Link>
+                </div>
+            </div>
+        )}
+        </>
     );
 }
 
