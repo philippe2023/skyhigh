@@ -1,20 +1,136 @@
 function Flights() {
     return (
-        <div class="container px-6 py-16 mx-auto ">
-            <div class="max-w-lg">
-                <h1 class="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">Düsseldorf - Paris</h1>
-                <p class="mt-6 text-gray-500 dark:text-gray-300">Düsseldorf Airport</p>
-            </div>
-
-            <div class="mt-10">
-                <img class="object-cover w-full h-96 rounded-xl lg:w-4/5" src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80" />
-                <div class="grid gap-4 col-start-1 col-end-3 row-start-1 sm:mb-6 sm:grid-cols-4 lg:gap-6 lg:col-start-2 lg:row-end-6 lg:row-span-6 lg:mb-0">
-                    <img src="https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="" class="w-full h-60 object-cover rounded-lg sm:h-52 sm:col-span-2 lg:col-span-full" loading="lazy" />
-                    <img src="https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="" class="hidden w-full h-52 object-cover rounded-lg sm:block sm:col-span-2 md:col-span-1 lg:row-start-2 lg:col-span-2 lg:h-32" loading="lazy" />
-                    <img src="https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="" class="hidden w-full h-52 object-cover rounded-lg md:block lg:row-start-2 lg:col-span-2 lg:h-32" loading="lazy" />
+        <div className="bg-white dark:bg-gray-900">
+            <div className="container px-6 pt-16 mx-auto">
+                <div className="max-w-lg">
+                    <h1 className="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">Düsseldorf - Paris</h1>
+                    <p className="mt-6 text-gray-500 dark:text-gray-300">Düsseldorf Airport</p>
                 </div>
             </div>
-        </div>
+
+            <div className="container px-6 py-10 mx-auto">
+                <div className="xl:flex xl:items-center xL:-mx-4"> 
+                    <div className="xl:w-2/3">
+                        <img className="object-cover w-full h-[490px] rounded-xl" src="https://images.unsplash.com/photo-1635668422724-fffb2201f951?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1443&q=80" />
+                    </div>
+                    <div className="grid grid-cols-1 gap-8 xl:gap-4 mt-8 xl:mt-0 xl:mx-4 xl:w-1/3 md:grid-cols-2">
+                        <div>
+                            <img className="object-cover rounded-xl aspect-square" src="https://images.unsplash.com/photo-1635668422724-fffb2201f951?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1443&q=80" alt="" />
+                        </div>
+                        <div>
+                            <img className="object-cover rounded-xl aspect-square" src="https://images.unsplash.com/photo-1635668422724-fffb2201f951?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1443&q=80" alt="" />
+                        </div>
+                        <div>
+                            <img className="object-cover rounded-xl aspect-square" src="https://images.unsplash.com/photo-1635668422724-fffb2201f951?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1443&q=80" alt="" />
+                        </div>
+                        <div>
+                            <img className="object-cover rounded-xl aspect-square" src="https://images.unsplash.com/photo-1635668422724-fffb2201f951?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1443&q=80" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="container px-6 mx-auto">
+                <div className=" lg:flex">
+                    <div className="w-full lg:w-1/2">
+                        <div className="lg:max-w-lg">
+                            <h1 className="text-xl font-semibold text-gray-800 dark:text-white lg:text-2xl">Flight proposed by <span className="text-blue-500 ">Jack Harlow</span></h1>
+                            <p className="mt-3 text-gray-600 dark:text-gray-400">3 Seats available - 1 Flight attendant - 2h Flight</p>
+                            <button className="w-full px-5 py-2 mt-6 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-lg lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500">Contact the host</button>
+                        </div>
+                        <hr className="my-6 border-gray-200 dark:border-gray-700" />
+                        <div className="lg:max-w-lg">
+                            <p className="text-xl font-semibold text-gray-800 dark:text-white lg:text-xl">Premium check-in</p>
+                            <p className="mt-1 text-gray-600 dark:text-gray-400">Free access to the airport lounge with premium facilities.</p>
+                        </div>
+                        <div className="lg:max-w-lg">
+                            <p className="text-xl font-semibold text-gray-800 dark:text-white lg:text-xl mt-3">Experienced traveler</p>
+                            <p className="mt-1 text-gray-600 dark:text-gray-400">Jack already had 3 flights with us.</p>
+                        </div>
+                        <hr className="my-6 border-gray-200 dark:border-gray-700" />
+                        <div className="lg:max-w-lg">
+                            <h1 className="text-xl font-semibold text-gray-800 dark:text-white lg:text-2xl"><span className="text-blue-500 ">Fly</span>Cover</h1>
+                            <p className="mt-3 text-gray-600 dark:text-gray-400">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</p>
+                            <p className="mt-3 text-gray-600 dark:text-gray-400">Learn more</p>
+                        </div>
+                        <hr className="my-6 border-gray-200 dark:border-gray-700" />
+                    </div>
+                    <div className="flex justify-end w-full mt-6 lg:mt-0 lg:w-1/2 px-4">
+                        <img className="h-128 w-96 lg:max-w-3xl rounded-xl" src="https://images.unsplash.com/photo-1635668422724-fffb2201f951?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1443&q=80" alt="placeholder" />
+                    </div>
+                </div>
+            </div>
+
+            <div className="container px-6 mx-auto text-center">
+                <div className="flex justify-center mt-10">
+                    <img className="object-cover w-full h-96 rounded-xl" src="https://images.unsplash.com/photo-1635668422724-fffb2201f951?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1443&q=80" />
+                </div>
+            </div>
+
+            <div className="container px-6 py-12 mx-auto">
+                <h1 className="text-2xl font-semibold text-gray-800 lg:text-3xl dark:text-white">Frequently asked questions</h1>
+
+                <div className="mt-8 space-y-8 lg:mt-12">
+                    <div className="p-8 bg-gray-100 rounded-lg dark:bg-gray-800">
+                        <button className="flex items-center justify-between w-full">
+                            <h1 className="font-semibold text-gray-700 dark:text-white">HOW LONG SHOULD I ARRIVE BEFORE DEPARTURE
+                            </h1>
+
+                            <span className="text-gray-400 bg-gray-200 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
+                                </svg>
+                            </span>
+                        </button>
+
+                        <p className="mt-6 text-sm text-gray-500 dark:text-gray-300">
+                            We advise our clients to arrive 15 to 20 minutes before the scheduled departure. Passengers should plan enough time to go through security, and customs if necessary.
+                        </p>
+                    </div>
+
+                    <div className="p-8 bg-gray-100 rounded-lg dark:bg-gray-800">
+                        <button className="flex items-center justify-between w-full">
+                            <h1 className="font-semibold text-gray-700 dark:text-white">CAN I CHANGE THE SCHEDULE OR THE ITINERARY OF MY FLIGHT
+
+                            </h1>
+
+                            <span className="text-gray-400 bg-gray-200 rounded-full">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
+                                </svg>
+                            </span>
+                        </button>
+
+                        <p className="mt-6 text-sm text-gray-500 dark:text-gray-300">
+                        Business aviation’s clients can change their flight departure time or even its destination. however additional fees may apply in some instances.
+                        </p>
+                    </div>
+
+                <div className="p-8 bg-gray-100 rounded-lg dark:bg-gray-800">
+                    <button className="flex items-center justify-between w-full">
+                        <h1 className="font-semibold text-gray-700 dark:text-white">WHAT ARE YOUR CANCELLATION TERMS ?
+                        </h1>
+
+                        <span className="text-gray-400 bg-gray-200 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
+                            </svg>
+                        </span>
+                    </button>
+
+                    <div className="mt-6 text-sm text-gray-500 dark:text-gray-300">
+                    Our cancellation policy is stated in our offers as follows:
+                        <ul>
+                            <li>30% of the flight amount if cancellation occurs after confirmation of the flight</li>
+                            <li>50% of flight amount if cancellation occurs less than 7 days before the flight</li>
+                            <li>80% of flight amount if cancellation occurs less than 48 hours before the flight</li>
+                            <li>100% of flight amount if cancellation occurs less than 24 hours before the flight</li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </div>
     );
 }
 

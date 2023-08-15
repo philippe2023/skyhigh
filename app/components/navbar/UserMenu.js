@@ -3,6 +3,7 @@ import { TbWorld } from 'react-icons/tb';
 import Avatar from '../Avatar';
 import MenuItem from './MenuItem';
 import Link from 'next/link';
+import ThemeChanger from './ThemeChanger';
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
 
@@ -23,10 +24,11 @@ async function UserMenu() {
                 <dialog id="my_modal_2" className="modal">
                     <form method="dialog" className="modal-box">
                         <div className="tabs">
-                            <a className="tab tab-bordered tab-active">Customize</a> 
-                            <a className="tab tab-bordered">Currency</a> 
-                            <a className="tab tab-bordered">Language and region</a> 
+                            <div className="tab tab-bordered tab-active">Customize</div> 
+                            <div className="tab tab-bordered">Currency</div> 
+                            <div className="tab tab-bordered">Language and region</div> 
                         </div>
+                        <ThemeChanger />
                     </form>
                     <form method="dialog" className="modal-backdrop">
                         <button>close</button>
@@ -42,7 +44,7 @@ async function UserMenu() {
                         </div>
                     </label>
 
-                    <div tabIndex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 cursor-pointer">
+                    <div tabIndex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 cursor-pointer dark:bg-slate-900">
                         <Link href="/api/auth/signout">
                             <MenuItem item="Sign out" />
                         </Link>
