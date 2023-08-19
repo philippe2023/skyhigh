@@ -3,8 +3,19 @@ import EmptyLegs from "../components/flight/emptyLegs";
 
 import {redirect} from "next/navigation";
 
+// create a random flight number
+// with a two-character airline designator and a 1 to 4 digit number
+// e.g: LH 1256, AF 123, BA 4567
+function generateFlightNumber() {
+    // pick two random letters as airline designator
+    const airline = String.fromCharCode(65 + Math.floor(Math.random() * 26), 65 + Math.floor(Math.random() * 26));
+    // pick a random number between 1 and 9999
+    const number = Math.floor(Math.random() * 9999) + 1;
+    return airline + " " + number;
+}
+
 function persistToDb(data) {
-    const stmt = db.prepare('INSERT INTO proposed_trip (departure, destination, user_id, no_of_passengers, departure_date) VALUES (@departure, @destination, @user_id, @no_of_passengers, unixepoch(@departure_date))');
+    const stmt = db.prepare('INSERT INTO proposed_trip (departure, destination, price, currency, user_id, no_of_passengers, departure_date, flight_number) VALUES (@departure, @destination, @price, @currency, @user_id, @no_of_passengers, unixepoch(@departure_date), @flight_number)');
     stmt.run(data);
 }
 
@@ -41,22 +52,24 @@ async function addTrip(data) {
     persistToDb({
         "departure": departure,
         "destination": destination,
-        //"plane": plane,
+        "price": Math.floor(Math.random() * 5000) + 5001,
+        "currency": "EUR",
+        "flight_number": generateFlightNumber(),
         // TODO: use user_id from session, if no session go to login?
         "user_id": 1,
         "departure_date": departure_date,
         "no_of_passengers": no_of_passengers,
     });
-    redirect('/about');
+    //redirect('/about');
 }
 
 export default function ProposeTrip() {
     return (
         <div className="container mx-auto my-auto">
-            <div class="w-full bg-center bg-cover h-[30rem]" style={{backgroundImage: 'url(/images/Hero.png)'}}>
-                <div class="flex items-center justify-center w-full h-full">
-                    <div class="text-center">
-                        <h1 class="text-3xl font-semibold lg:text-4xl dark:text-gray-200"><span class="text-blue-400">Post</span> a travel route and <span class="text-blue-400">invite</span> people to join.</h1>
+            <div className="w-full bg-center bg-cover h-[30rem]" style={{backgroundImage: 'url(/images/Hero.png)'}}>
+                <div className="flex items-center justify-center w-full h-full">
+                    <div className="text-center">
+                        <h1 className="text-3xl font-semibold lg:text-4xl dark:text-gray-200"><span className="text-blue-400">Post</span> a travel route and <span className="text-blue-400">invite</span> people to join.</h1>
                         <form action={addTrip} className="">
                             <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-4  md:grid-cols-2 xl:grid-cols-5">
                                 <input type="text" name="departure" placeholder="From where?" required className="input input-bordered w-full max-w-xs mx-auto" />

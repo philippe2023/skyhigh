@@ -1,18 +1,68 @@
-CREATE TABLE user (
-	id INTEGER PRIMARY KEY,
-  first_name TEXT NOT NULL,
-	last_name TEXT NOT NULL,
-	password TEXT NOT NULL,
-	email TEXT NOT NULL
+CREATE TABLE IF NOT EXISTS "Account" (
+    "id" INTEGER NOT NULL PRIMARY KEY,
+    "userId" INTEGER NOT NULL,
+    "type" TEXT NOT NULL,
+    "provider" TEXT NOT NULL,
+    "providerAccountId" TEXT NOT NULL,
+    "refresh_token" TEXT,
+    "access_token" TEXT,
+    "expires_at" INTEGER,
+    "token_type" TEXT,
+    "scope" TEXT,
+    "id_token" TEXT,
+    "session_state" TEXT,
+    CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO user SELECT
+INSERT INTO Account SELECT
   json_extract(value, '$.id'),
-  json_extract(value, '$.first_name'),
-  json_extract(value, '$.last_name'),
-  json_extract(value, '$.password'),
-  json_extract(value, '$.email')
+  json_extract(value, '$.userId'),
+  json_extract(value, '$.type'),
+  json_extract(value, '$.provider'),
+  json_extract(value, '$.providerAccountId'),
+  json_extract(value, '$.refresh_token'),
+  json_extract(value, '$.access_token'),
+  json_extract(value, '$.expires_at'),
+  json_extract(value, '$.token_type'),
+  json_extract(value, '$.scope'),
+  json_extract(value, '$.id_token'),
+  json_extract(value, '$.session_state')
+FROM json_each(readfile('account_seed.json'));
+
+CREATE TABLE IF NOT EXISTS "Session" (
+    "id" INTEGER NOT NULL PRIMARY KEY,
+    "sessionToken" TEXT NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "expires" DATETIME NOT NULL,
+    CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS "User" (
+    "id" INTEGER NOT NULL PRIMARY KEY,
+    "name" TEXT,
+    "email" TEXT,
+    "emailVerified" DATETIME,
+    "image" TEXT
+);
+
+INSERT INTO User SELECT
+  json_extract(value, '$.id'),
+  json_extract(value, '$.name'),
+  json_extract(value, '$.email'),
+  json_extract(value, '$.emailVerified'),
+  json_extract(value, '$.image')
 FROM json_each(readfile('user_seed.json'));
+
+CREATE TABLE IF NOT EXISTS "VerificationToken" (
+    "identifier" TEXT NOT NULL,
+    "token" TEXT NOT NULL,
+    "expires" DATETIME NOT NULL
+);
+CREATE UNIQUE INDEX "Account_provider_providerAccountId_key" ON "Account"("provider", "providerAccountId");
+CREATE UNIQUE INDEX "Session_sessionToken_key" ON "Session"("sessionToken");
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+CREATE UNIQUE INDEX "VerificationToken_token_key" ON "VerificationToken"("token");
+CREATE UNIQUE INDEX "VerificationToken_identifier_token_key" ON "VerificationToken"("identifier", "token");
 
 CREATE TABLE empty_leg (
 	id INTEGER PRIMARY KEY,

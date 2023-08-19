@@ -1,7 +1,5 @@
-[
-{"id":1,"first_name":"John","last_name":"Doe","password":"123456","email":"john_doe@gmail.com"},
-{"id":2,"first_name":"Max","last_name":"Mustermann","password":"maxM","email":"max_mustermann@web.de"},
-{"id":3,"first_name":"Jane","last_name":"Doe","password":"Johnny","email":"jane_doe@gmail.com"},
-{"id":4,"first_name":"Erika","last_name":"Mustermann","password":"akire","email":"erika_mustermann@gmx.de"},
-{"id":5,"first_name":"Otto","last_name":"Normalverbraucher","password":"ottonorm","email":"otto_normalverbraucher@yahoo.com"}
-]
+[{"id":1,"name":"user1","email":"user1@test.com","emailVerified":null,"image":"https://s.gravatar.com/avatar/eb7c8c7791f4f4c7cdd712635277a1f2?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fus.png"},
+{"id":2,"name":"user2","email":"user2@test.com","emailVerified":null,"image":"https://s.gravatar.com/avatar/cc00a8c917457e6e7259900fc25ac879?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fus.png"},
+{"id":3,"name":"user3","email":"user3@test.com","emailVerified":null,"image":"https://s.gravatar.com/avatar/8d967bc57202b6d44618dcb0753afe5d?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fus.png"},
+{"id":4,"name":"user4","email":"user4@test.com","emailVerified":null,"image":"https://s.gravatar.com/avatar/7cc73669801d4e98648067643fe4b055?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fus.png"},
+{"id":5,"name":"user5","email":"user5@test.com","emailVerified":null,"image":"https://s.gravatar.com/avatar/cb7c343f9e4ad83b60e8c42fcb3d6311?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fus.png"}]

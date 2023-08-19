@@ -1,5 +1,3 @@
-'use client'
-
 import Container from "../container";
 import Logo from "./Logo";
 import Search from "./Search";
