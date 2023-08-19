@@ -49,23 +49,18 @@ export default function SqliteDBAdapter() {
             stmt.run(provider, providerAccountId);
         },
         async createSession(session) {
-            let expires = session.expires;
-            // TODO: check if session.expires is always a Date object
-            if (expires instanceof Date) {
-                expires = Math.floor(session.expires.getTime() / 1000);
-            }
+            // Convert expires Date object to a timestamp
+            const expiresForDB = Math.floor(session.expires.getTime() / 1000);
             const stmt = db.prepare('INSERT INTO session (sessionToken, userId, expires) VALUES (@sessionToken, @userId, ?) RETURNING id');
-            const id = stmt.run(session, expires);
+            const id = stmt.run(session, expiresForDB);
             return {...session, id: id.lastInsertRowid};
         },
         async getSessionAndUser(sessionToken) {
             const stmt = db.prepare('SELECT * FROM session WHERE sessionToken = ?');
             const session = stmt.get(sessionToken);
             if (!session) return;
-            // TODO: verify that session expires is a number
-            if (typeof session.expires === 'number') {
-                session.expires = new Date(session.expires * 1000);
-            }
+            // convert expires timestamp from DB to Date object
+            session.expires = new Date(session.expires * 1000);
             const user = db.prepare('SELECT * FROM user WHERE id = ?').get(session.userId);
             if (!user) return;
             return {
@@ -74,8 +69,14 @@ export default function SqliteDBAdapter() {
             };
         },
         async updateSession(session) {
-            const stmt = db.prepare('UPDATE session SET sessionToken = ?, userId = ?, expires = ? WHERE id = ?');
-            stmt.run(session.sessionToken, session.userId, session.expires, session.id);
+            const existing = db.prepare('SELECT * FROM session WHERE sessionToken = ?').get(session.sessionToken);
+            if (!existing) {
+              throw new Error(`Can not update session ${session.sessionToken}; Unable to find session.`);
+            }
+            // Convert expires Date object to a timestamp
+            const expiresForDB = Math.floor(session.expires.getTime() / 1000);
+            const stmt = db.prepare('UPDATE session SET expires = ? WHERE sessionToken = ?');
+            stmt.run(expiresForDB, session.sessionToken);
         },
         async deleteSession(sessionToken) {
             const stmt = db.prepare('DELETE FROM session WHERE sessionToken = ?');
