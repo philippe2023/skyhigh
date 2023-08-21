@@ -40,6 +40,8 @@ CREATE TABLE IF NOT EXISTS "Session" (
 CREATE TABLE IF NOT EXISTS "User" (
     "id" INTEGER NOT NULL PRIMARY KEY,
     "name" TEXT,
+    "firstName" TEXT,
+    "lastName" TEXT,
     "email" TEXT,
     "emailVerified" DATETIME,
     "image" TEXT
@@ -48,6 +50,8 @@ CREATE TABLE IF NOT EXISTS "User" (
 INSERT INTO User SELECT
   json_extract(value, '$.id'),
   json_extract(value, '$.name'),
+  json_extract(value, '$.firstName'),
+  json_extract(value, '$.lastName'),
   json_extract(value, '$.email'),
   json_extract(value, '$.emailVerified'),
   json_extract(value, '$.image')
