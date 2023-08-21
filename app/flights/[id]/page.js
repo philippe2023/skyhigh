@@ -5,9 +5,10 @@ function getFlightData(id) {
     return flight;
 }
 
-
 function Flights({params}) {
     const flightData = getFlightData(params.id);
+    let price = (flightData.price).toString();
+    price = price.slice(0,-2) + "," + price.slice(-2);
 
     return (
         <div className="bg-white dark:bg-gray-900">
@@ -68,7 +69,7 @@ function Flights({params}) {
                     <div className="flex justify-end w-full mt-6 lg:mt-0 lg:w-1/2 px-4">
                         <form className="px-4 mx-4 border-solid border-4 border-slate-200 rounded-lg">
                             <div className="m-4 text-xl">
-                                <p className="decoration-slate-500 text-slate-500">Flight price € {flightData.price}</p>
+                                <p className="decoration-slate-500 text-slate-500">Flight price € {price}</p>
                                 <p className="text-white">--</p>
                                 <p className="">Currently € {Math.floor(flightData.price / (flightData.max_seats - flightData.available_seats))} per person</p>
                             </div>

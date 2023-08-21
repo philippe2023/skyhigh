@@ -1,11 +1,27 @@
+import { db } from "../../_utils/database";
 
-function ProposedFlightsDetailedPage(flight) {
+function getFlightData(id) {
+    const flight = db.prepare("SELECT departure, destination, price, STRFTIME('%Y-%m-%d', departure_date, 'unixepoch') AS date, no_of_passengers, flight_number, user_id from proposed_trip WHERE id=?").get(id);
+    return flight;
+}
+
+function getUserData(id) {
+    const user = db.prepare("SELECT name from User WHERE id=?").get(id);
+    return user;
+}
+
+function ProposedFlightsDetailedPage({params}) {
+    const flightData = getFlightData(params.id);
+    const userData = getUserData(flightData.user_id);
+    let price = (flightData.price).toString();
+    price = price.slice(0,-2) + "," + price.slice(-2);
+
     return (
         <div className="bg-white dark:bg-gray-900">
             <div className="container px-6 pt-16 mx-auto">
                 <div className="max-w-lg">
-                    <h1 className="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">Dusseldorf - Paris</h1>
-                    <p className="mt-6 text-gray-500 dark:text-gray-300">Düsseldorf Airport</p>
+                    <h1 className="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">{flightData.date} {flightData.departure} - {flightData.destination}</h1>
+                    <p className="mt-6 text-gray-500 dark:text-gray-300">{flightData.departure} Airport</p>
                 </div>
             </div>
 
@@ -35,8 +51,8 @@ function ProposedFlightsDetailedPage(flight) {
                 <div className=" lg:flex">
                     <div className="w-full lg:w-1/2">
                         <div className="lg:max-w-lg">
-                            <h1 className="text-xl font-semibold text-gray-800 dark:text-white lg:text-2xl">Flight proposed by <span className="text-blue-500 ">Jack Harlow</span></h1>
-                            <p className="mt-3 text-gray-600 dark:text-gray-400">3 Seats available - 1 Flight attendant - 2h Flight</p>
+                            <h1 className="text-xl font-semibold text-gray-800 dark:text-white lg:text-2xl">Flight proposed by <span className="text-blue-500 ">{userData.name}</span></h1>
+                            <p className="mt-3 text-gray-600 dark:text-gray-400">{flightData.no_of_passengers} {flightData.no_of_passengers === 1 ? 'Passenger' : 'Passengers'} - 1 Flight attendant - 2h Flight</p>
                             <button className="w-full px-5 py-2 mt-6 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-lg lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500">Contact the host</button>
                         </div>
                         <hr className="my-6 border-gray-200 dark:border-gray-700" />
@@ -59,7 +75,7 @@ function ProposedFlightsDetailedPage(flight) {
                     <div className="flex justify-end w-full mt-6 lg:mt-0 lg:w-1/2 px-4">
                         <form className="px-4 mx-4 border-solid border-4 border-slate-200 rounded-lg">
                             <div className="m-4 text-xl">
-                                <p className="decoration-slate-500 text-slate-500 line-through">€ 1000</p>
+                                <p className="decoration-slate-500 text-slate-500">Flight price € {price}</p>
                                 <p className="text-white">--</p>
                                 <p className=""> € 850 per person</p>
                             </div>
