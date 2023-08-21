@@ -1,21 +1,28 @@
 'use client';
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useTheme } from 'next-themes'
 
 function Logo() {
-    const router = useRouter();
+    const { resolvedTheme } = useTheme();
+    let src;
+
+    switch (resolvedTheme) {
+    case 'light':
+        src = '/images/skyhigh.png';
+        break;
+    case 'dark':
+        src = '/images/skyhigh-dark.png';
+        break;
+    default:
+        src = '/images/skyhigh.png';
+        break;
+    }
 
     return (
         <Link href="/">
-            <Image 
-                alt="Logo"
-                className="hidden md:block cursor-pointer"
-                height="120"
-                width="120"
-                src="/images/skyhigh.png"
-            />
+            <Image src={src} alt="Logo" className="hidden md:block cursor-pointer" height="120" width="120" />
         </Link>
     );
 }
