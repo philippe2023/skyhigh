@@ -103,7 +103,7 @@ CREATE TABLE proposed_trip (
 	currency TEXT NOT NULL,
   featured INTEGER DEFAULT FALSE,
   flight_number TEXT DEFAULT '',
-  FOREIGN KEY(user_id) REFERENCES user(id)
+  FOREIGN KEY(user_id) REFERENCES User(id)
 );
 
 INSERT INTO proposed_trip(id, departure, destination, departure_date, user_id, price, currency, featured, flight_number) SELECT
@@ -123,7 +123,7 @@ CREATE TABLE booking (
   user_id INTEGER NOT NULL,
   empty_leg_id INTEGER DEFAULT NULL,
   proposed_trip_id INTEGER DEFAULT NULL,
-  FOREIGN KEY(user_id) REFERENCES user(id),
+  FOREIGN KEY(user_id) REFERENCES User(id),
   FOREIGN KEY(empty_leg_id) REFERENCES empty_leg(id),
   FOREIGN KEY(proposed_trip_id) REFERENCES proposed_trip(id)
 );
