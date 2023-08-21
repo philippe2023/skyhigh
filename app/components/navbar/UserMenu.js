@@ -29,13 +29,13 @@ async function UserMenu() {
                     </label>
 
                     <div tabIndex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 cursor-pointer dark:bg-slate-900">
+                        <Link href="/user/profile">
+                            <MenuItem item="Profile" />
+                        </Link>
                         <Link href="/api/auth/signout">
                             <MenuItem item="Sign out" />
                         </Link>
                         <hr className="border-gray-200 dark:border-gray-700 " />
-
-                        <MenuItem item="Propose a trip" />
-
                         <Link href="/sharing">
                             <MenuItem item="Find a trip" />
                         </Link>
