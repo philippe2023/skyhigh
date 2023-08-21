@@ -45,7 +45,7 @@ function Flights({params}) {
                 <div className=" lg:flex">
                     <div className="w-full lg:w-1/2">
                         <div className="lg:max-w-lg">
-                            <h1 className="text-xl font-semibold text-gray-800 dark:text-white lg:text-2xl">Flight proposed by <span className="text-blue-500 ">Jack Harlow</span></h1>
+                            <h1 className="text-xl font-semibold text-gray-800 dark:text-white lg:text-2xl">Empty Leg by <span className="text-blue-500 ">FlyAway LLC</span></h1>
                             <p className="mt-3 text-gray-600 dark:text-gray-400">{flightData.available_seats} {flightData.available_seats === 1 ? 'Seat' : 'Seats'} available - 1 Flight attendant - 2h Flight</p>
                             <button className="w-full px-5 py-2 mt-6 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-lg lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500">Contact the host</button>
                         </div>
