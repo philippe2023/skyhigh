@@ -68,7 +68,7 @@ function ProposedFlightsDetailedPage(flight) {
                                 <input type="date" name="checkindate" placeholder="When?" required className="text-black text-base container mx-auto" />
                                 <p className="my-1 border-solid border-2 border-slate-400 rounded-lg"></p>
                                 <p className="text-slate-400 text-sm ">GUESTS</p>
-                                <input type="number" min="1" max="5" name="GUESTS" placeholder="How many?" required size="4" minlength="4" className="container mx-auto text-black text-base" />
+                                <input type="number" min="1" max="5" name="GUESTS" placeholder="How many?" required size="4" minLength="4" className="container mx-auto text-black text-base" />
                             </div>
                             <div className="mx-4 my-2 text-base flex justify-between">
                                 <p className="">ticket price (2 persons)</p>
