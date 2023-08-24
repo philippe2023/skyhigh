@@ -1,8 +1,6 @@
 # syntax = docker/dockerfile:1
 
-# Adjust NODE_VERSION as desired
-ARG NODE_VERSION=18.16.1
-FROM node:${NODE_VERSION}-slim as base
+FROM node:18-alpine as base
 
 LABEL fly_launch_runtime="Next.js"
 
@@ -24,12 +22,14 @@ WORKDIR /app
 FROM base as build
 
 # Install packages needed to build node modules
-RUN apt-get update -qq && \
-    apt-get install -y build-essential pkg-config python-is-python3
+#RUN apt-get update -qq && \
+#    apt-get install -y build-essential pkg-config python-is-python3
 
 # Install node modules
 COPY --link package-lock.json package.json ./
-RUN npm ci --include=dev
+# force needed to install canary version of next when also using next-auth
+# https://github.com/nextauthjs/next-auth/pull/5657#pullrequestreview-1161391092
+RUN npm ci --include=dev --force
 
 # Copy application code
 COPY --link . .
@@ -38,7 +38,8 @@ COPY --link . .
 RUN npm run build
 
 # Remove development dependencies
-RUN npm prune --omit=dev
+# force see npm ci comment above
+RUN npm prune --omit=dev --force
 
 # Final stage for app image
 FROM base
