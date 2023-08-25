@@ -1,34 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is the TechLabs Düsseldorf Summer 2023 Project by group 7 built with
+* [Next.js](https://nextjs.org/)
+* [Tailwind CSS](https://tailwindcss.com/)
+* [next-auth](https://next-auth.js.org/)
+* [Auth0](https://auth0.com/)
+* [daisyUI](https://daisyui.com/)
 
 ## Getting Started
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1. Install dependencies with `npm install`
+2. Set environment variables for Auth0 and next-auth in `.env.local` (see `.env.example`). Also set Allowed Callback URLs 'http://localhost:3000/api/auth/callback/auth0' and Allowed Logout URLs 'http://localhost:3000' in Auth0 dashboard. Please note that the example users from the seed file are not available in your Auth0 tenant. You have to create them manually in the Auth0 dashboard or use the normal signup flow.
+3. Create and seed SQLite database with `sqlite3 skyhigh_dev.sqlite < create_and_seed_tables.sql`
+4. Start the development server with `npm run dev`
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Deploy on Fly.io
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This repository contains a `fly.toml` and a `Dockerfile` for easy deployment on [Fly.io](https://fly.io/). The fly commands have to be run from the root directory of the repository.
 
-## Learn More
+Make sure to adjust the `NEXTAUTH_URL` and `AUTH0_ISSUER` environment variables in the `Dockerfile` as well as creating the secrets for `AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, NEXTAUTH_SECRET` in your Fly.io dashboard. Also set the Allowed Callback URLs and Allowed Logout URLs in the Auth0 dashboard to 'https://your-app-name.fly.dev/api/auth/callback/auth0' and 'https://your-app-name.fly.dev' respectively.
+Then run `flyctl deploy` to deploy the app.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+After successful deployment, you have to manually copy the sqlite database to the Fly.io volume, that is created during deployment. For that run `flyctl ssh sftp shell` and from there `put skyhigh_dev.sqlite /data/skyhigh.sqlite` to copy the database to the volume.
