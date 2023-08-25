@@ -5,6 +5,8 @@ This is the TechLabs Düsseldorf Summer 2023 Project by group 7 built with
 * [Auth0](https://auth0.com/)
 * [daisyUI](https://daisyui.com/)
 
+![skyhigh1_40](https://github.com/philippe2023/skyhigh/assets/22592421/2ba550bc-5237-4f2a-9c95-54e72883d9f9) ![skyhigh2_40](https://github.com/philippe2023/skyhigh/assets/22592421/4b7c5731-2e95-4927-88d4-ca640a0c0a10) ![skyhigh3_40](https://github.com/philippe2023/skyhigh/assets/22592421/3a0c5516-04c4-49ef-9f4f-09287efd40e3)
+
 ## Getting Started
 
 1. Install dependencies with `npm install`
