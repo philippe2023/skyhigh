@@ -48,9 +48,11 @@ async function UserMenu() {
         </div>
         ) : (
             <div className="flex flex-row items-center gap-3">
-                <div className="hidden md:block btn bg-white normal-case border-none text-sm font-semibold py-3 px-4 rounded-full hover:bg-slate-800 hover:text-gray-50 transition curser-pointer dark:bg-gray-900 dark:text-gray-300">
-                    <Link href="/api/auth/signin">Log in</Link>
-                </div>
+                <WorldIcon />
+                <Link
+                 href="/api/auth/signin"
+                 className="hidden md:block btn bg-white normal-case border-none text-sm font-semibold py-3 px-4 rounded-full hover:bg-slate-800 dark:hover:bg-white hover:text-gray-50 dark:hover:text-black transition curser-pointer dark:bg-gray-900 dark:text-gray-300"
+                >Log in</Link>
             </div>
         )}
         </>
