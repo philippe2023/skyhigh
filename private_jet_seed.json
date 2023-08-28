@@ -1,0 +1,56 @@
+[
+    {"id": 1, 
+    "name":"Cessna Citation M2", 
+    "description":"The Cessna Citation M2 is the successor to the Cessna Citation Mustang and produced by Cessna Aircraft Company. Citation M2 offers passengers a more spacious, quieter cabin. The interior features class-leading design quality and seating for up to five passengers. Special attention was paid to the ergonomics of the cabin: the company's designers have developed completely new seats with the ability to adjust. The cabin has eight large windows that help to highlight the spaciousness of the cabin. The aircraft is capable of carrying 3 passengers (with 1 crew member) from Moscow to London or Nice, Cannes.",
+    "crew": "1-2 crew",
+    "max_distance": "2,800 Km",
+    "max_flight": "Up to 3,5 hours",
+    "max_seats": 5,
+    "category": "Very Light",
+    "image": "images/plane/Cessna_Citation_M2.jpg"
+    },
+
+    {"id": 2, 
+    "name":"Phenom 300", 
+    "description":"Speed, economy, high performance are the advantages of the Phenom 300. The design feature of this model is the swept wing, which increases the flight speed and range. The interior of the aircraft, offered by the BMW design studio, offers passengers the maximum of comfort in this class. For example, the widened passage between the seats in the shoulder area, which gives the interior an elegant shape and provides passengers with more freedom of movement. The luggage compartment is one of the largest in its class, so this model is an excellent choice for shopping and active sports enthusiasts.",
+    "crew": "2 crew",
+    "max_distance": "3,650 Km",
+    "max_flight": "Up to 4,5 hours",
+    "max_seats": 7,
+    "category": "Light",
+    "image": "images/plane/Phenom_300.jpg"
+    },
+
+    {"id": 3, 
+    "name":"Hawker 850XP", 
+    "description":"Hawker 850XP is one of the best aircraft in the midsize class and the best option for flights of 5-6 passengers within Europe (for 2-3 hours). The 850XP cabin is as comfortable as possible for its size: in a narrow but fairly convenient passage, people of average height will not have to bend over. Passengers are provided with everything necessary for short-term flights: small kitchen, lavatory, wardrobe in which luggage is also placed. The Hawker aircraft family are distinguished by their excellent flight characteristics, ease of piloting, and the ability to take off from short runways. Advanced noise cancellation and vibration reduction systems ensure silence throughout the flight.",
+    "crew": "2 crew",
+    "max_distance": "4,893 Km",
+    "max_flight": "Up to 4,5 hours",
+    "max_seats": 7,
+    "category": "Light",
+    "image": "images/plane/Hawker_850XP.jpg"
+    },
+
+    {"id": 4, 
+    "name":"Gulfstream G-150", 
+    "description":"With its long range, high speed, advanced avionics and a comfortable cabin, the G150 is one of the most compelling offerings in its class. The cabin of the G150 is optimal in size for 6-7 passengers, and the almost square section of the fuselage makes it more comfortable in the shoulder and head area, even for tall passengers. The G150 is the fastest, most luxurious and prestigious way to travel from Moscow to Dubai or to London in its class. Small kitchen is equipped with everything needed for storing food and preparing food.",
+    "crew": "2 crew",
+    "max_distance": "5,463 Km",
+    "max_flight": "Up to 5,5 hours",
+    "max_seats": 8,
+    "category": "Midsize",
+    "image": "images/plane/Gulfstream_G-150.jpg"
+    },
+
+    {"id": 5, 
+    "name":"Legacy 650 650E", 
+    "description":"Embraer Legacy 650/650E is a multipurpose business jet, the flagship of Embraer's Legacy line. Based on the 600, Legacy 650 can fly non-stop from London to New York and from Miami to Sao Paolo. The spacious cabin presents 2 parts – the main area and a private room. The standard layout is 10 individual new design armchairs plus a 3-seater sofa. The Legacy 650/650E has its own kitchen with a refrigerator, coffee machine and warming area. In the aft section there is a luggage compartment that passengers can access during the flight. The Legacy 650/650E lets you work, dine or relax in a total comfort.",
+    "crew": "2 crew",
+    "max_distance": "7,200 Km",
+    "max_flight": "Up to 7,5 hours",
+    "max_seats": 13,
+    "category": "Heavy",
+    "image": "images/plane/Legacy_650_650E.jpg"
+    }
+]
