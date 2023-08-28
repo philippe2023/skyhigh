@@ -28,6 +28,11 @@ function persistToDb(data) {
 	return id.lastInsertRowid;
 }
 
+function getPlanes() {
+	const stmt = db.prepare("SELECT id, name from private_jet");
+	return stmt.all();
+}
+
 class AtomicState {
 	constructor(message = undefined) {
 		this.message = message;
@@ -92,6 +97,7 @@ async function addTrip(data) {
 // TODO: Fix mobile layout
 // TODO: Fix error messages showing up when re-navigating to page
 export default async function ProposeTrip() {
+	const planes = getPlanes();
 	const session = await getServerSession(authOptions);
 
 	if (!session) {
@@ -178,7 +184,9 @@ export default async function ProposeTrip() {
 										<option value="" disabled>
 											Select plane
 										</option>
-										<option value="cessna">Cessna</option>
+										{planes.map(plane => (
+											<option key={plane.id} value={plane.id}>{plane.name}</option>
+										))}
 									</select>
 								</label>
 								<label>
