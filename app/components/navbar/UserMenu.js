@@ -14,9 +14,7 @@ async function UserMenu() {
             <div 
             className="relative">
             <div className="flex flex-row items-center gap-3">
-                <div className="hidden md:block btn bg-white normal-case border-none text-sm font-semibold py-3 px-4 rounded-full hover:bg-slate-800 hover:text-gray-50 transition curser-pointer dark:bg-gray-900 dark:text-gray-300">
-                    <Link href="/propose-trip">Propose a trip</Link>
-                </div>
+                <Link className="hidden md:block btn bg-white normal-case border-none text-sm font-semibold py-3 px-4 rounded-full hover:bg-slate-800 hover:text-gray-50 transition curser-pointer dark:bg-gray-900 dark:text-gray-300" href="/propose-trip">Propose a trip</Link>
                 <WorldIcon />
                 <div className="dropdown dropdown-bottom dropdown-end">
                     <label tabIndex="0">
