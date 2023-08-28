@@ -107,10 +107,12 @@ CREATE TABLE proposed_trip (
 	currency TEXT NOT NULL,
   featured INTEGER DEFAULT FALSE,
   flight_number TEXT DEFAULT '',
-  FOREIGN KEY(user_id) REFERENCES User(id)
+  plane_id INTEGER DEFAULT NULL,
+  FOREIGN KEY(user_id) REFERENCES User(id),
+  FOREIGN KEY(plane_id) REFERENCES private_jet(id)
 );
 
-INSERT INTO proposed_trip(id, departure, destination, departure_date, user_id, price, currency, featured, flight_number) SELECT
+INSERT INTO proposed_trip(id, departure, destination, departure_date, user_id, price, currency, featured, flight_number, plane_id) SELECT
   json_extract(value, '$.id'),
   json_extract(value, '$.departure'),
   json_extract(value, '$.destination'),
@@ -119,7 +121,8 @@ INSERT INTO proposed_trip(id, departure, destination, departure_date, user_id, p
   json_extract(value, '$.price'),
   json_extract(value, '$.currency'),
   json_extract(value, '$.featured'),
-  json_extract(value, '$.flight_number')
+  json_extract(value, '$.flight_number'),
+  json_extract(value, '$.plane_id')
 FROM json_each(readfile('proposed_trip_seed.json'));
 
 CREATE TABLE private_jet (

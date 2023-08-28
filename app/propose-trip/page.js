@@ -6,23 +6,18 @@ import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 
-// create a random flight number
-// with a two-character airline designator and a 1 to 4 digit number
-// e.g: LH 1256, AF 123, BA 4567
 function generateFlightNumber() {
-	// pick two random letters as airline designator
 	const airline = String.fromCharCode(
 		65 + Math.floor(Math.random() * 26),
 		65 + Math.floor(Math.random() * 26)
 	);
-	// pick a random number between 1 and 9999
 	const number = Math.floor(Math.random() * 9999) + 1;
 	return airline + " " + number;
 }
 
 function persistToDb(data) {
 	const stmt = db.prepare(
-		"INSERT INTO proposed_trip (departure, destination, price, currency, user_id, no_of_passengers, departure_date, flight_number) VALUES (@departure, @destination, @price, @currency, @user_id, @no_of_passengers, unixepoch(@departure_date), @flight_number) RETURNING id"
+		"INSERT INTO proposed_trip (departure, destination, price, currency, user_id, no_of_passengers, departure_date, flight_number, plane_id) VALUES (@departure, @destination, @price, @currency, @user_id, @no_of_passengers, unixepoch(@departure_date), @flight_number, @plane_id) RETURNING id"
 	);
 	const id = stmt.run(data);
 	return id.lastInsertRowid;
@@ -54,7 +49,7 @@ async function addTrip(data) {
 	const errors = new Map();
 	let departure = "";
 	let destination = "";
-	let plane = "";
+	let plane = 0;
 	let departure_date = null;
 	let no_of_passengers = 0;
 
@@ -65,7 +60,7 @@ async function addTrip(data) {
 	if ((destination = data.get("destination")).trim() === "") {
 		errors.set("destination", "Missing destination");
 	}
-	if ((plane = data.get("plane")) === "") {
+	if (!(plane = data.get("plane"))) {
 		errors.set("plane", "Missing plane");
 	}
 	if ((departure_date = data.get("departure_date")) === null) {
@@ -89,6 +84,7 @@ async function addTrip(data) {
 			user_id: data.get("user_id"),
 			departure_date: departure_date,
 			no_of_passengers: no_of_passengers,
+			plane_id: plane,
 		});
 		redirect(`/sharing/${id}`);
 	}
