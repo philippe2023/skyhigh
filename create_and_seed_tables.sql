@@ -122,6 +122,30 @@ INSERT INTO proposed_trip(id, departure, destination, departure_date, user_id, p
   json_extract(value, '$.flight_number')
 FROM json_each(readfile('proposed_trip_seed.json'));
 
+CREATE TABLE private_jet (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  description TEXT NOT NULL,
+  crew TEXT NOT NULL,
+  max_distance TEXT NOT NULL,
+  max_flight TEXT NOT NULL,
+  max_seats INTEGER NOT NULL,
+  category TEXT NOT NULL,
+  image TEXT NOT NULL
+);
+
+INSERT INTO private_jet(id, name, description, crew, max_distance, max_flight, max_seats, category, image) SELECT
+  json_extract(value, '$.id'),
+  json_extract(value, '$.name'),
+  json_extract(value, '$.description'),
+  json_extract(value, '$.crew'),
+  json_extract(value, '$.max_distance'),
+  json_extract(value, '$.max_flight'),
+  json_extract(value, '$.max_seats'),
+  json_extract(value, '$.category'),
+  json_extract(value, '$.image')
+FROM json_each(readfile('private_jet_seed.json'));
+
 CREATE TABLE booking (
 	id INTEGER PRIMARY KEY,
   user_id INTEGER NOT NULL,
