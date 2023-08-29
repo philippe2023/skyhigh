@@ -7,7 +7,7 @@
     "max_flight": "Up to 3,5 hours",
     "max_seats": 5,
     "category": "Very Light",
-    "image": "images/plane/Cessna_Citation_M2.jpg"
+    "image": "/images/jets/Cessna_Citation_M2.jpg"
     },
 
     {"id": 2, 
@@ -18,7 +18,7 @@
     "max_flight": "Up to 4,5 hours",
     "max_seats": 7,
     "category": "Light",
-    "image": "images/plane/Phenom_300.jpg"
+    "image": "/images/jets/Phenom_300.jpg"
     },
 
     {"id": 3, 
@@ -29,7 +29,7 @@
     "max_flight": "Up to 4,5 hours",
     "max_seats": 7,
     "category": "Light",
-    "image": "images/plane/Hawker_850XP.jpg"
+    "image": "/images/jets/Hawker_850XP.jpg"
     },
 
     {"id": 4, 
@@ -40,7 +40,7 @@
     "max_flight": "Up to 5,5 hours",
     "max_seats": 8,
     "category": "Midsize",
-    "image": "images/plane/Gulfstream_G-150.jpg"
+    "image": "/images/jets/Gulfstream_G-150.jpg"
     },
 
     {"id": 5, 
@@ -51,6 +51,6 @@
     "max_flight": "Up to 7,5 hours",
     "max_seats": 13,
     "category": "Heavy",
-    "image": "images/plane/Legacy_650_650E.jpg"
+    "image": "/images/jets/Legacy_650_650E.jpg"
     }
 ]
