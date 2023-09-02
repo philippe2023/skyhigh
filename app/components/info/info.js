@@ -1,5 +1,8 @@
 "use client"
+import FindModal from "./FindInfo";
+import ProposeModal from "./ProposeInfo";
 import SearchModal from "./SearchInfo";
+import ShareModal from "./ShareInfo";
 
 function Info() {
     return (
@@ -8,7 +11,7 @@ function Info() {
                 <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">Discover <span className="underline decoration-blue-500">FlyJets</span></h1>
 
                 <p className="mt-4 text-gray-500 xl:mt-6 dark:text-gray-300">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum quam voluptatibus
+                    Get more information on how you can use SkyHigh to search or plan your next unique flying experience.
                 </p>
 
                 <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2">
@@ -32,15 +35,7 @@ function Info() {
                                 </div>
                             </div>
                         </div>
-                        <dialog id="proposeInfo" className="modal modal-bottom sm:modal-middle">
-                            <form method="dialog" className="modal-box">
-                                <h3 className="font-bold text-lg">Propose Info!</h3>
-                                <p className="py-4">Press ESC key or click the button below to close</p>
-                                <div className="modal-action">
-                                    <button className="btn">Close</button>
-                                </div>
-                            </form>
-                        </dialog>
+                        <ProposeModal />
                     </div>
                     <div className=" bg-gray-100 rounded-lg dark:bg-gray-800">
                         <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 w-auto group" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1525026198548-4baa812f1183?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1034&q=80)'}} onClick={()=>window.findInfo.showModal()}>
@@ -51,15 +46,7 @@ function Info() {
                                 </div>
                             </div>
                         </div>
-                        <dialog id="findInfo" className="modal modal-bottom sm:modal-middle">
-                            <form method="dialog" className="modal-box">
-                                <h3 className="font-bold text-lg">Find Info!</h3>
-                                <p className="py-4">Press ESC key or click the button below to close</p>
-                                <div className="modal-action">
-                                    <button className="btn">Close</button>
-                                </div>
-                            </form>
-                        </dialog>
+                        <FindModal />
                     </div>
                     <div className=" bg-gray-100 rounded-lg dark:bg-gray-800">
                         <div className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 w-auto group" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1574202141112-c3a90e1a3ce2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80)'}} onClick={()=>window.shareInfo.showModal()}>
@@ -70,21 +57,11 @@ function Info() {
                                 </div>
                             </div>
                         </div>
-                        <dialog id="shareInfo" className="modal modal-bottom sm:modal-middle">
-                            <form method="dialog" className="modal-box">
-                                <h3 className="font-bold text-lg">Share Info!</h3>
-                                <p className="py-4">Press ESC key or click the button below to close</p>
-                                <div className="modal-action">
-                                    <button className="btn">Close</button>
-                                </div>
-                            </form>
-                        </dialog>
+                        <ShareModal />
                     </div>
                 </div>
             </div>
         </div>
-
-
     );
 }
 
