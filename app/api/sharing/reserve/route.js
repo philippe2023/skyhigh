@@ -13,29 +13,31 @@ export async function POST(request) {
   const no_of_passengers = data.get("guests");
   const flight_id = data.get("flight_id");
   const stmt = db.prepare(
-    "INSERT INTO booking (empty_leg_id, user_id, no_of_passengers) VALUES (@flight_id, @session_user_id, @no_of_passengers) RETURNING id"
+    "INSERT INTO booking (proposed_trip_id, user_id, no_of_passengers) VALUES (@flight_id, @session_user_id, @no_of_passengers) RETURNING id"
   );
-  // TODO: Figure out error handling
-  // and returning from this api route
-  // + handling client side, see FlightForm.js line 22
   const id = stmt.run({
     flight_id,
     session_user_id: session.user.id,
     no_of_passengers,
   });
-
   const bookingId = id.lastInsertRowid;
-  // update available seats in empty_leg table
+
+  // update no_of_passengers in proposed_trip table
   const stmt2 = db.prepare(
-    "UPDATE empty_leg SET available_seats = available_seats - @no_of_passengers WHERE id = @flight_id"
+    "UPDATE proposed_trip SET no_of_passengers = no_of_passengers + @no_of_passengers WHERE id = @flight_id"
   );
   stmt2.run({ flight_id, no_of_passengers });
-  // check if available_seats in empty_leg table are 0, if so set reservation_open to 0
+  // check if no_of_passengers in proposed_trip table cover all seats available in the plane
+  const { max_seats } = db
+    .prepare(
+      `SELECT private_jet.max_seats as max_seats
+      FROM proposed_trip left join private_jet ON proposed_trip.plane_id=private_jet.id
+      WHERE proposed_trip.id=?`
+    )
+    .get(flight_id);
   const stmt3 = db.prepare(
-    "UPDATE empty_leg SET reservation_open = 0 WHERE id = @flight_id AND available_seats = 0"
+    "UPDATE proposed_trip SET reservation_open = 0 WHERE id = @flight_id AND no_of_passengers = @max_seats"
   );
-  stmt3.run({ flight_id });
-
-  // TODO: error handling
+  stmt3.run({ flight_id, max_seats });
   return NextResponse.json({ bookingId });
 }

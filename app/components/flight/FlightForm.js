@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { usePathname } from 'next/navigation';
 
 function FlightForm({
   params: { id, price, bookedSeats, date, available_seats },
@@ -8,13 +9,21 @@ function FlightForm({
   const [isLoading, setIsLoading] = useState(false);
   const [submitDisabled, setSubmitDisabled] = useState(false);
   const router = useRouter();
+
+  const pathname = usePathname();
+  let reservationApiURL = "/api/flight/reserve";
+  if (pathname.startsWith('/sharing')) {
+    reservationApiURL = "/api/sharing/reserve";
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setSubmitDisabled(true);
     setIsLoading(true);
     const data = new FormData(event.target);
 
-    const response = await fetch("/api/flight/reserve", {
+    
+    const response = await fetch(reservationApiURL, {
       method: "POST",
       body: data,
     });

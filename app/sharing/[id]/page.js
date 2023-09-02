@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 function getFlightData(id) {
   const flight = db
     .prepare(
-    `
+      `
     SELECT departure, destination, price, STRFTIME('%Y-%m-%d', departure_date, 'unixepoch') AS date, no_of_passengers, flight_number, user_id, User.name as userName, private_jet.image as plane_image_path, private_jet.name as plane_name, crew, private_jet.max_seats, private_jet.max_seats as max_seats, reservation_open
     FROM proposed_trip
     LEFT JOIN 'User'
@@ -20,40 +20,6 @@ function getFlightData(id) {
     .get(id);
   return flight;
 }
-
-async function reserve(data) {
-    "use server";
-    const session = await getServerSession(authOptions);
-    if (!session) {
-      throw new Error("You need to be logged in to book a flight.");
-    }
-    const no_of_passengers = data.get("guests");
-    const flight_id = data.get("flight_id");
-    const stmt = db.prepare(
-      "INSERT INTO booking (proposed_trip_id, user_id, no_of_passengers) VALUES (@flight_id, @session_user_id, @no_of_passengers) RETURNING id"
-    );
-    const id = stmt.run({
-      flight_id,
-      session_user_id: session.user.id,
-      no_of_passengers,
-    });
-    const bookingId = id.lastInsertRowid;
-
-    // update no_of_passengers in proposed_trip table
-    const stmt2 = db.prepare(
-      "UPDATE proposed_trip SET no_of_passengers = no_of_passengers + @no_of_passengers WHERE id = @flight_id"
-    );
-    stmt2.run({ flight_id, no_of_passengers });
-    // check if no_of_passengers in proposed_trip table cover all seats available in the plane
-    const {max_seats} = db.prepare(`SELECT private_jet.max_seats as max_seats
-    FROM proposed_trip left join private_jet ON proposed_trip.plane_id=private_jet.id
-    WHERE proposed_trip.id=?`).get(flight_id);
-    const stmt3 = db.prepare(
-      "UPDATE proposed_trip SET reservation_open = 0 WHERE id = @flight_id AND no_of_passengers = @max_seats"
-    );
-    stmt3.run({ flight_id, max_seats });
-    redirect(`/bookings/${bookingId}`);
-  }
 
 async function ProposedFlightsDetailedPage({ params }) {
   const flightData = getFlightData(params.id);
@@ -86,10 +52,10 @@ async function ProposedFlightsDetailedPage({ params }) {
             <div>
               <img
                 className="object-cover rounded-xl aspect-square h-[490px]"
-                src={`/images/destinations/${flightData.departure
+                src={`/images/destinations/${flightData.destination
                   .toLowerCase()
                   .replace(" ", "_")}.jpg`}
-                alt={flightData.departure}
+                alt={flightData.destination}
               />
             </div>
           </div>
@@ -149,29 +115,15 @@ async function ProposedFlightsDetailedPage({ params }) {
           <div className="flex justify-end w-full mt-6 lg:mt-0 lg:w-1/2 px-4">
             {flightData.reservation_open ? (
               session ? (
-                <form
-                  action={reserve}
-                  className="px-4 mx-4 border-solid border-4 border-slate-200 rounded-lg"
-                >
-                  <FlightForm
-                    params={{
-                        price: flightData.price,
-                        bookedSeats: flightData.no_of_passengers,
-                        date: flightData.date,
-                        available_seats: available_seats
-                    }}
-                  />
-                  <input type="hidden" name="flight_id" value={params.id} />
-                  <button
-                    type="submit"
-                    className="container mx-auto mt-8 mb-2 py-4 text-2xl flex justify-center bg-black text-white rounded-lg"
-                  >
-                    Reserve
-                  </button>
-                  <p className="flex justify-center text-sm">
-                    You won't be charged yet!
-                  </p>
-                </form>
+                <FlightForm
+                  params={{
+                    id: params.id,
+                    price: flightData.price,
+                    bookedSeats: flightData.no_of_passengers,
+                    date: flightData.date,
+                    available_seats: available_seats,
+                  }}
+                />
               ) : (
                 <div className="text-center">
                   <h1 className="text-3xl font-bold lg:text-4xl dark:text-gray-200">
@@ -180,7 +132,7 @@ async function ProposedFlightsDetailedPage({ params }) {
                 </div>
               )
             ) : (
-                <div className="text-center">
+              <div className="text-center">
                 <h1 className="text-3xl font-bold lg:text-4xl dark:text-gray-200">
                   Reservation is closed for this flight. All seats are booked.
                 </h1>
