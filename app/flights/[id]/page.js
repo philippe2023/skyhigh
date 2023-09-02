@@ -45,7 +45,7 @@ async function Flights({ params }) {
                 src={`/images/destinations/${flightData.destination
                   .toLowerCase()
                   .replace(" ", "_")}.jpg`}
-                alt={flightData.departure}
+                alt={flightData.destination}
               />
             </div>
           </div>
