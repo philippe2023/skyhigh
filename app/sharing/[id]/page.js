@@ -76,9 +76,6 @@ async function ProposedFlightsDetailedPage({ params }) {
                 - {available_seats} {available_seats === 1 ? "Seat" : "Seats"}{" "}
                 available - {flightData.crew} - 2h Flight
               </p>
-              <button className="w-full px-5 py-2 mt-6 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-lg lg:w-auto hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                Contact the host
-              </button>
             </div>
             <hr className="my-6 border-gray-200 dark:border-gray-700" />
             <div className="lg:max-w-lg">

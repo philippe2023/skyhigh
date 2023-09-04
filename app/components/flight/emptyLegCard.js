@@ -2,8 +2,7 @@ import Link from "next/link";
 
 function EmptyLegCard({city}) {
     const { id } = city;
-    let price = (city.price).toString();
-    price = price.slice(0,-2) + "," + price.slice(-2);
+    const price = (city.price*0.01).toFixed(2);
 
     // construct links using the event ids
     const exploreLink = `/flights/${id}`;

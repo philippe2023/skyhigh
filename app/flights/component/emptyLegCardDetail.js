@@ -1,9 +1,11 @@
+import Link from "next/link";
+
 export default function EmptyLegCard({flight}) {
-    let price = (flight.price).toString();
-    price = price.slice(0,-2) + "," + price.slice(-2);
+    const price = (flight.price*0.01).toFixed(2);
     return (
         <div className="mt-12 space-y-8 ">
-            <div className="flex overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 hover:outline hover:outline-2 outline-offset-2 outline-slate-300 solid cursor-pointer duration-200 hover:scale-105">
+            <Link href={`/flights/${flight.id}`}>
+                <div className="flex overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 hover:outline hover:outline-2 outline-offset-2 outline-slate-300 solid cursor-pointer duration-200 hover:scale-105">
             <div className="w-1/4 bg-cover" style={{backgroundImage: `url(/images/destinations/${flight.destination.toLowerCase().replace(" ","_")}.jpg)`}}></div>
             <div className="w-3/4 px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
                 <div className="flex items-center justify-between">
@@ -30,13 +32,14 @@ export default function EmptyLegCard({flight}) {
                     
                 </div>
                 <div className="flex items-center justify-between mt-4">
-                    <p className="text-blue-600 dark:text-blue-400 hover:underline uppercase">Flight info</p>
+                    <div></div>
                     <div className="flex items-center">
                         <p className="font-bold text-gray-700 cursor-pointer dark:text-gray-200">€ {price}</p>
                     </div>
                 </div>
             </div>
             </div>
+            </Link>
         </div>
     );
 }

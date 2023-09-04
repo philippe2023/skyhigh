@@ -12,13 +12,16 @@ export async function POST(request) {
   const data = await request.formData();
   const no_of_passengers = data.get("guests");
   const flight_id = data.get("flight_id");
+  const price = (data.get("price")*100).toFixed(2);
   const stmt = db.prepare(
-    "INSERT INTO booking (proposed_trip_id, user_id, no_of_passengers) VALUES (@flight_id, @session_user_id, @no_of_passengers) RETURNING id"
+    "INSERT INTO booking (proposed_trip_id, user_id, no_of_passengers, total_price, currency) VALUES (@flight_id, @session_user_id, @no_of_passengers, @price, @currency) RETURNING id"
   );
   const id = stmt.run({
     flight_id,
     session_user_id: session.user.id,
     no_of_passengers,
+    price,
+    currency: "EUR",
   });
   const bookingId = id.lastInsertRowid;
 
