@@ -12,8 +12,10 @@ export async function POST(request) {
   const data = await request.formData();
   const no_of_passengers = data.get("guests");
   const flight_id = data.get("flight_id");
+  const price = data.get("price");
+  const currency = "EUR";
   const stmt = db.prepare(
-    "INSERT INTO booking (empty_leg_id, user_id, no_of_passengers) VALUES (@flight_id, @session_user_id, @no_of_passengers) RETURNING id"
+    "INSERT INTO booking (empty_leg_id, user_id, no_of_passengers, total_price, currency) VALUES (@flight_id, @session_user_id, @no_of_passengers, @price, @currency) RETURNING id"
   );
   // TODO: Figure out error handling
   // and returning from this api route
@@ -22,6 +24,8 @@ export async function POST(request) {
     flight_id,
     session_user_id: session.user.id,
     no_of_passengers,
+    price,
+    currency
   });
 
   const bookingId = id.lastInsertRowid;

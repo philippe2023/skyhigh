@@ -37,6 +37,8 @@ function FlightForm({
 
   const [guests, setGuests] = useState(1);
   const pricePerPerson = (price * 0.01) / (bookedSeats + guests);
+  const totalPrice = pricePerPerson * guests;
+  const discount = 300;
   const handleGuests = (e) => {
     setGuests(e.target.valueAsNumber);
   };
@@ -80,11 +82,11 @@ function FlightForm({
         <p className="">
           ticket price ({guests} {guests == 1 ? "Person" : "Persons"})
         </p>
-        <p>€ {(pricePerPerson * guests).toFixed(2)}</p>
+        <p>€ {(totalPrice).toFixed(2)}</p>
       </div>
       <div className="mx-4 my-2 text-base flex justify-between">
         <p>discount </p>
-        <p>€ {(300).toFixed(2)}</p>
+        <p>€ {(discount).toFixed(2)}</p>
       </div>
       <div className="mx-4 my-2 text-base flex justify-between">
         <p>fees </p>
@@ -98,10 +100,11 @@ function FlightForm({
           {guests == 1 ? "Person" : "Persons"}{" "}
         </p>
         <p className="font-semibold">
-          € {(pricePerPerson * guests - 300).toFixed(2)}
+          € {(totalPrice - discount).toFixed(2)}
         </p>
       </div>
       <input type="hidden" name="flight_id" value={id} />
+      <input type="hidden" name="price" value={totalPrice - discount} />
       <button
         type="submit"
         className="container mx-auto mt-8 mb-2 py-4 text-2xl flex justify-center bg-black text-white rounded-lg"

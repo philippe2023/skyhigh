@@ -155,6 +155,8 @@ CREATE TABLE booking (
   empty_leg_id INTEGER DEFAULT NULL,
   proposed_trip_id INTEGER DEFAULT NULL,
   no_of_passengers INTEGER NOT NULL,
+	currency TEXT NOT NULL,
+  total_price INTEGER NOT NULL,
   FOREIGN KEY(user_id) REFERENCES User(id),
   FOREIGN KEY(empty_leg_id) REFERENCES empty_leg(id),
   FOREIGN KEY(proposed_trip_id) REFERENCES proposed_trip(id)
@@ -165,5 +167,7 @@ INSERT INTO booking SELECT
   json_extract(value, '$.user_id'),
   json_extract(value, '$.empty_leg_id'),
   json_extract(value, '$.proposed_trip_id'),
-  json_extract(value, '$.no_of_passengers')
+  json_extract(value, '$.no_of_passengers'),
+  json_extract(value, '$.currency'),
+  json_extract(value, '$.total_price')
 FROM json_each(readfile('booking_seed.json'));

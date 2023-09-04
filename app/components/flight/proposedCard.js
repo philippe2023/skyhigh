@@ -3,8 +3,7 @@ import Link from "next/link";
 
 function ProposedCard({flight}) {
     const { id } = flight;
-    let price = (flight.price).toString();
-    price = price.slice(0,-2) + "," + price.slice(-2);
+    const price = (flight.price*0.01).toFixed(2);
 
     // construct links using the event ids
     const exploreLink = `/sharing/${id}`;

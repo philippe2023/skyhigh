@@ -4,7 +4,7 @@ import Link from "next/link";
 import { db } from "../../_utils/database";
 
 function getFeaturedLegs() {
-  const featured = db.prepare("SELECT id, departure, destination, price, STRFTIME('%Y-%m-%d', departure_date, 'unixepoch') AS date, max_seats from empty_leg WHERE featured=TRUE").all();
+  const featured = db.prepare("SELECT id, departure, destination, price, STRFTIME('%Y-%m-%d', departure_date, 'unixepoch') AS date, max_seats from empty_leg WHERE featured=TRUE LIMIT 4").all();
   return featured;
 }
 
