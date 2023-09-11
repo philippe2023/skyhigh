@@ -37,7 +37,7 @@ function Logo() {
 
     return (
         <Link href="/">
-            <Image src={src} alt="Logo" className="hidden md:block cursor-pointer" width={120} height={30} />
+            <Image src={src} alt="Logo" className="md:block cursor-pointer" width={120} height={30} />
         </Link>
     );
 }

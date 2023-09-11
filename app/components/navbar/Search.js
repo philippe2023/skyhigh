@@ -1,7 +1,7 @@
 'use client';
 
 import { BiSearch } from 'react-icons/bi';
-import { useState, useRef } from "react";
+import { useState } from "react";
 import SearchBar from './SearchBar';
 import { useClickAway } from "@uidotdev/usehooks";
 

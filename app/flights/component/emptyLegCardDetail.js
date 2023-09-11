@@ -4,7 +4,7 @@ export default function EmptyLegCard({flight}) {
     const price = (flight.price*0.01).toFixed(2);
     return (
         <div className="mt-12 space-y-8 ">
-            <Link href={`/flights/${flight.id}`}>
+            <Link href={flight.flight_category === "sharing" ? `/sharing/${flight.id}` : `/flights/${flight.id}`}>
                 <div className="flex overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 hover:outline hover:outline-2 outline-offset-2 outline-slate-300 solid cursor-pointer duration-200 hover:scale-105">
             <div className="w-1/4 bg-cover" style={{backgroundImage: `url(/images/destinations/${flight.destination.toLowerCase().replace(" ","_")}.jpg)`}}></div>
             <div className="w-3/4 px-8 py-4 bg-white rounded-lg shadow-md dark:bg-gray-800">
