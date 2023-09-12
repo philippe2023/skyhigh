@@ -16,7 +16,7 @@ function SearchBar() {
     }
   };
 
-  const submit = async (event) => {
+  const submit = async (_event) => {
     const searchURL = "flights?" + new URLSearchParams({destination: destination,});
     // This redirect somehow has an Unhandled Runtime Error 'Error: NEXT_REDIRECT'
     // redirect(searchURL);
@@ -37,6 +37,7 @@ function SearchBar() {
               onChange={e => setDestination(e.target.value)}
               onKeyDown={handleKeyDown}
               className="text-slate-900 bg-transparent border-none outline-none leading-6 placeholder-slate-400 dark:text-white"
+              autoFocus
             />
           ) : (
             <div>

@@ -4,7 +4,6 @@ import { useState } from "react";
 
 export default function FlightFilter({ flights, destination }) {
   const [selectedCategory, setSelectedCategory] = useState("all");
-  "test".slice(0, 3).startsWith("tes");
   const [flightsToShow, setFlightsToShow] = useState(destination ? flights.filter((e) => e.destination.startsWith(destination)) : flights);
 
   const handleFlightCategoryChange = (e) => {

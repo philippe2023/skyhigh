@@ -4,16 +4,20 @@ import { BiSearch } from 'react-icons/bi';
 import { useState } from "react";
 import SearchBar from './SearchBar';
 import { useClickAway } from "@uidotdev/usehooks";
+import { useNavigationEvent } from './useNavigationEvent';
 
 function Search() {
     const [isExpanded, setIsExpanded] = useState(false);
     const toggleExpanded = () => {
         setIsExpanded((prevIsExpanded) => !prevIsExpanded);
     };
+    // TODO: keep input state when toggling
     const ref = useClickAway(() => {
-    setIsExpanded(false);
+        setIsExpanded(false);
     });
 
+    // close the search bar when navigating to a new page
+    useNavigationEvent(() => setIsExpanded(false));
 
     return (
         <div ref={ref}>
