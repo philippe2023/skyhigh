@@ -73,26 +73,26 @@ CREATE TABLE empty_leg (
   departure TEXT NOT NULL,
 	destination TEXT NOT NULL,
 	departure_date INTEGER NOT NULL,
-	max_seats INTEGER NOT NULL,
-	available_seats INTEGER NOT NULL,
+	no_of_passengers INTEGER DEFAULT 1,
   reservation_open INTEGER DEFAULT TRUE,
 	price INTEGER NOT NULL,
 	currency TEXT NOT NULL, -- Three letter code as of https://www.xe.com/iso4217.php
   featured INTEGER DEFAULT FALSE,
-  flight_number TEXT DEFAULT ''
+  flight_number TEXT DEFAULT '',
+  plane_id INTEGER DEFAULT NULL,
+  FOREIGN KEY(plane_id) REFERENCES private_jet(id)
 );
 
-INSERT INTO empty_leg(id, departure, destination,	departure_date,	max_seats, available_seats,	price, currency, featured, flight_number) SELECT
+INSERT INTO empty_leg(id, departure, destination,	departure_date,	price, currency, featured, flight_number, plane_id) SELECT
   json_extract(value, '$.id'),
   json_extract(value, '$.departure'),
   json_extract(value, '$.destination'),
   json_extract(value, '$.departure_date'),
-  json_extract(value, '$.max_seats'),
-  json_extract(value, '$.available_seats'),
   json_extract(value, '$.price'),
   json_extract(value, '$.currency'),
   json_extract(value, '$.featured'),
-  json_extract(value, '$.flight_number')
+  json_extract(value, '$.flight_number'),
+  json_extract(value, '$.plane_id')
 FROM json_each(readfile('empty_leg_seed.json'));
 
 CREATE TABLE proposed_trip (
