@@ -109,7 +109,7 @@ async function Bookings({ params }) {
                                     />
                                   </div>
                                   <div className="grid grid-cols-1">
-                                    <div className="text-left py-2 text-blue-600 font-semibold">Düsseldorf</div>
+                                    <div className="text-left py-2 text-blue-600 font-semibold">{bookingData.departure}</div>
                                     <div className="text-left py-2 text-gray-600">{departure_date.toDateString()}</div>
                                     <div className="text-left py-2 text-gray-600">10:25 a.m.</div>
                                   </div>
@@ -122,7 +122,7 @@ async function Bookings({ params }) {
                               <div className="col-span-2 bg-slate-200 rounded-xl">
                                 <div className="p-5 grid grid-cols-2 gap-0">
                                   <div className=" grid grid-cols-1">
-                                    <div className="text-right py-2 text-blue-600 font-semibold">London</div>
+                                    <div className="text-right py-2 text-blue-600 font-semibold">{bookingData.destination}</div>
                                     <div className="text-right py-2 text-gray-600">{departure_date.toDateString()}</div>
                                     <div className="text-right py-2 text-gray-600">11:05 a.m.</div>
                                   </div>

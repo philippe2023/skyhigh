@@ -3,7 +3,13 @@ import Link from "next/link";
 import { db } from "../../_utils/database";
 
 function proposedTrips() {
-    const flights = db.prepare("SELECT id, departure, destination, STRFTIME('%Y-%m-%d', departure_date, 'unixepoch') AS date, price from proposed_trip WHERE featured=TRUE").all();
+    const flights = db.prepare(`
+    SELECT proposed_trip.id as id, departure, destination, STRFTIME('%Y-%m-%d', departure_date, 'unixepoch') AS date, price, no_of_passengers, private_jet.max_seats as max_seats
+    FROM proposed_trip
+    LEFT JOIN private_jet
+    ON proposed_trip.plane_id=private_jet.id
+    WHERE featured=TRUE`
+    ).all();
     return flights;
 }
 

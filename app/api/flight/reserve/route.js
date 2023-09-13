@@ -31,14 +31,21 @@ export async function POST(request) {
   const bookingId = id.lastInsertRowid;
   // update available seats in empty_leg table
   const stmt2 = db.prepare(
-    "UPDATE empty_leg SET available_seats = available_seats - @no_of_passengers WHERE id = @flight_id"
+    "UPDATE empty_leg SET no_of_passengers = no_of_passengers + @no_of_passengers WHERE id = @flight_id"
   );
   stmt2.run({ flight_id, no_of_passengers });
-  // check if available_seats in empty_leg table are 0, if so set reservation_open to 0
+  const { max_seats } = db
+    .prepare(
+      `SELECT private_jet.max_seats as max_seats
+      FROM proposed_trip left join private_jet ON proposed_trip.plane_id=private_jet.id
+      WHERE proposed_trip.id=?`
+    )
+    .get(flight_id);
+  // check if no_of_passengers in empty_leg table cover all seats available in the plane
   const stmt3 = db.prepare(
-    "UPDATE empty_leg SET reservation_open = 0 WHERE id = @flight_id AND available_seats = 0"
+    "UPDATE empty_leg SET reservation_open = 0 WHERE id = @flight_id AND no_of_passengers = @max_seats"
   );
-  stmt3.run({ flight_id });
+  stmt3.run({ flight_id, max_seats });
 
   // TODO: error handling
   return NextResponse.json({ bookingId });
