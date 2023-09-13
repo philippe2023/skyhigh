@@ -2,32 +2,31 @@
 import EmptyLegCard from "./emptyLegCardDetail";
 import { useState } from "react";
 
-export default function FlightFilter({ flights, destination }) {
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [flightsToShow, setFlightsToShow] = useState(destination ? flights.filter((e) => e.destination.startsWith(destination)) : flights);
+function combinedFilter(flight, destination, flightCategory) {
+  if (flightCategory === "all" && !destination) {
+    return true;
+  }
+  if (flightCategory !== "all") {
+    return flight.destination.startsWith(destination) && flight.flight_category === flightCategory;
+  }
+
+  return flight.destination.startsWith(destination);
+}
+
+export default function FlightFilter({ flights, destination, flightCategory }) {
+  const [selectedCategory, setSelectedCategory] = useState(flightCategory || "all");
+  const [selectedDestination, setSelectedDestination] = useState(destination || "");
+  const [flightsToShow, setFlightsToShow] = useState(flights.filter((flight) => combinedFilter(flight, selectedDestination, selectedCategory)));
 
   const handleFlightCategoryChange = (e) => {
     const category = e.target.value;
     setSelectedCategory(category);
-    switch (category) {
-      case "all":
-        setFlightsToShow(flights);
-        break;
-      case "empty_leg":
-        const emptyLegs = flights.filter((e) => e.flight_category === "empty_leg");
-        setFlightsToShow(emptyLegs);
-        break;
-      case "sharing":
-        const sharedFlights = flights.filter((e) => e.flight_category === "sharing");
-        setFlightsToShow(sharedFlights);
-        break;
-      default:
-        break;
-    }
+    setFlightsToShow(flights.filter((flight) => combinedFilter(flight, selectedDestination, category)));
   };
 
   return (
     <>
+      <h1 className="text-2xl font-semibold text-center text-gray-800 lg:text-3xl dark:text-white">Available Flights{selectedDestination && ` for ${selectedDestination}`}</h1>
       <div className="flex justify-between">
         <div className="form-control">
           <label className="label cursor-pointer">
@@ -69,7 +68,21 @@ export default function FlightFilter({ flights, destination }) {
           </label>
         </div>
       </div>
-
+      <div className="form-control">
+        <label className="label">
+          <span className="label-text">Destination</span>
+          <input
+            type="text"
+            placeholder="Enter destination"
+            value={selectedDestination}
+            onChange={(e) => {
+              setSelectedDestination(e.target.value);
+              setFlightsToShow(flights.filter((flight) => combinedFilter(flight, e.target.value, selectedCategory)));
+            }}
+            className="input input-bordered text-slate-900 bg-transparent outline-none leading-6 placeholder-slate-400 dark:text-white"
+          />
+        </label>
+      </div>
       {flightsToShow.map((e) => (
         <EmptyLegCard key={e.id+e.flight_category} flight={e} />
       ))}
