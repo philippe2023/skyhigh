@@ -45,25 +45,25 @@ function FlightForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="px-4 mx-4 border-solid border-4 border-slate-200 rounded-lg"
+      className="px-4 mx-4 border-solid border-2 border-slate-200 rounded-lg"
     >
       <div className="m-4 text-xl">
-        <p className="decoration-slate-500 text-slate-500">
-          Total flight price € {(price * 0.01).toFixed(2)}
+        <p className="text-xl font-semibold text-gray-800 dark:text-white lg:text-2xl">
+          Total flight price <span className="text-blue-500 ">€ {(price * 0.01).toFixed(2)} </span>
         </p>
-        <p className="text-white">--</p>
-        <p className="">€ {pricePerPerson.toFixed(2)} per person</p>
+        <p className="mt-3 text-gray-600 dark:text-gray-400">--</p>
+        <p className="mt-3 text-gray-600 dark:text-gray-400">€ {pricePerPerson.toFixed(2)} per person</p>
       </div>
-      <div className="m-4 mb-8 py-2 px-4 border-solid border-4 border-slate-400 rounded-lg">
-        <p className="text-slate-400 text-sm">DEPARTURE DATE</p>
+      <div className="md:m-4 mb-8 px-4 border-solid border-2 border-slate-200 rounded-lg">
+        <p className="mt-3 text-gray-600 dark:text-gray-400">DEPARTURE DATE</p>
         <input
           type="date"
           value={date}
           disabled
-          className="text-black text-base container mx-auto"
+          className="bg-white text-gray-800 dark:text-white text-base container mx-auto my-3 dark:bg-slate-800 px-5 py-1 rounded-md"
         />
-        <p className="my-1 border-solid border-2 border-slate-400 rounded-lg"></p>
-        <p className="text-slate-400 text-sm ">GUESTS</p>
+        <hr className="my-1 border-solid border-2 border-slate-200 rounded-lg" />
+        <p className="mt-3 text-gray-600 dark:text-gray-400">GUESTS</p>
         <input
           type="number"
           defaultValue="1"
@@ -75,31 +75,31 @@ function FlightForm({
           required
           size="4"
           minength="4"
-          className="container mx-auto text-black text-base"
+          className="bg-white text-gray-800 dark:text-white text-base container mx-auto my-3 dark:bg-slate-800 px-6 py-1 rounded-md"
         />
       </div>
-      <div className="mx-4 my-2 text-base flex justify-between">
+      <div className="mt-3 text-gray-600 dark:text-gray-400 px-4 flex justify-between">
         <p className="">
           ticket price ({guests} {guests == 1 ? "Person" : "Persons"})
         </p>
         <p>€ {(totalPrice).toFixed(2)}</p>
       </div>
-      <div className="mx-4 my-2 text-base flex justify-between">
+      <div className="mt-3 text-gray-600 dark:text-gray-400 px-4 flex justify-between">
         <p>discount </p>
         <p>€ {(discount).toFixed(2)}</p>
       </div>
-      <div className="mx-4 my-2 text-base flex justify-between">
+      <div className="mt-3 text-gray-600 dark:text-gray-400 px-4 flex justify-between">
         <p>fees </p>
         <p>€ 0</p>
       </div>
-      <div className="mx-4 my-2 border-solid border-2 border-slate-400 rounded-lg"></div>
-      <div className="mx-4 my-2 text-base flex justify-between">
-        <p>
+      <hr className="mt-6 border-gray-200 dark:border-gray-700" />
+            <div className="mx-4 my-2 text-base flex justify-between">
+        <p className="mt-3 text-blue-600 font-semibold">
           {" "}
-          <span className="font-semibold">total</span> {guests}{" "}
+          <span className="text-gray-600 dark:text-gray-400 ">total</span> {guests}{" "}
           {guests == 1 ? "Person" : "Persons"}{" "}
         </p>
-        <p className="font-semibold">
+        <p className="mt-3 text-gray-600 dark:text-gray-400 font-semibold">
           € {(totalPrice - discount).toFixed(2)}
         </p>
       </div>
@@ -107,7 +107,7 @@ function FlightForm({
       <input type="hidden" name="price" value={totalPrice - discount} />
       <button
         type="submit"
-        className="container mx-auto mt-8 mb-2 py-4 text-2xl flex justify-center bg-black text-white rounded-lg"
+        className="container mx-auto mt-8 mb-2 py-4 text-2xl flex justify-center bg-black text-white rounded-lg sm:text-base items-center gap-x-3 hover:bg-black/80 duration-300 transition-colors border border-transparent px-8"
         disabled={submitDisabled}
       >
         {isLoading ? (
@@ -116,7 +116,7 @@ function FlightForm({
           "Reserve"
         )}
       </button>
-      <p className="flex justify-center text-sm">You won't be charged yet!</p>
+      <p className="flex justify-center text-sm my-3 text-blue-600">You won't be charged yet!</p>
     </form>
   );
 }
