@@ -39,7 +39,7 @@ async function UserMenu() {
                         </Link>
                         <Link href="/about"><MenuItem item="About" /></Link>
                         <hr className="border-gray-200 dark:border-gray-700 " />
-                        <MenuItem item="Help" />
+                        <Link href="/help"><MenuItem item="Help" /></Link>
                     </div>
                 </div>
             </div>
