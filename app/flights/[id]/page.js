@@ -166,60 +166,48 @@ async function Flights({ params }) {
         </h1>
 
         <div className="mt-8 space-y-8 lg:mt-12">
-          <div className="p-8 bg-gray-100 rounded-lg dark:bg-gray-800">
-            <button className="flex items-center justify-between w-full">
+          <div className="collapse collapse-arrow p-8 bg-gray-100 rounded-lg dark:bg-gray-800">
+            <input type="radio" name="my-accordion-2" /> 
+
+            <div className="collapse-title flex items-center justify-between w-full">
               <h1 className="font-semibold text-gray-700 dark:text-white">
                 HOW LONG SHOULD I ARRIVE BEFORE DEPARTURE
               </h1>
+            </div>
 
-              <span className="text-gray-400 bg-gray-200 rounded-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                  </svg>
-              </span>
-            </button>
-
-            <p className="mt-6 text-sm text-gray-500 dark:text-gray-300">
+            <div className="collapse-content mt-6 text-sm text-gray-500 dark:text-gray-300">
               We advise our clients to arrive 15 to 20 minutes before the
               scheduled departure. Passengers should plan enough time to go
               through security, and customs if necessary.
-            </p>
+            </div>
           </div>
 
-          <div className="p-8 bg-gray-100 rounded-lg dark:bg-gray-800">
-            <button className="flex items-center justify-between w-full">
+          <div className="collapse collapse-arrow p-8 bg-gray-100 rounded-lg dark:bg-gray-800">
+          <input type="radio" name="my-accordion-2" /> 
+
+            <div className="collapse-title flex items-center justify-between w-full">
               <h1 className="font-semibold text-gray-700 dark:text-white">
                 CAN I CHANGE THE SCHEDULE OR THE ITINERARY OF MY FLIGHT
               </h1>
+            </div>
 
-              <span className="text-gray-400 bg-gray-200 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                </svg>
-              </span>
-            </button>
-
-            <p className="mt-6 text-sm text-gray-500 dark:text-gray-300">
+            <div className="collapse-content mt-6 text-sm text-gray-500 dark:text-gray-300">
               Business aviation’s clients can change their flight departure time
               or even its destination. however additional fees may apply in some
               instances.
-            </p>
+            </div>
           </div>
 
-          <div className="p-8 bg-gray-100 rounded-lg dark:bg-gray-800">
-            <button className="flex items-center justify-between w-full">
+          <div className="collapse collapse-arrow p-8 bg-gray-100 rounded-lg dark:bg-gray-800">
+          <input type="radio" name="my-accordion-2" /> 
+
+            <div className="collapse-title flex items-center justify-between w-full">
               <h1 className="font-semibold text-gray-700 dark:text-white">
                 WHAT ARE YOUR CANCELLATION TERMS ?
               </h1>
+            </div>
 
-              <span className="text-gray-400 bg-gray-200 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                </svg>
-              </span>
-            </button>
-
-            <div className="mt-6 text-sm text-gray-500 dark:text-gray-300">
+            <div className="collapse-content mt-6 text-sm text-gray-500 dark:text-gray-300">
               Our cancellation policy is stated in our offers as follows:
               <ul>
                 <li>

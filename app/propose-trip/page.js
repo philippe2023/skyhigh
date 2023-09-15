@@ -142,40 +142,40 @@ export default async function ProposeTrip() {
 								)}
 							</div>
 						)}
-						<h1 className="text-3xl font-semibold lg:text-4xl dark:text-gray-200">
+						<h1 className="sm:pt-16 text-3xl font-semibold lg:text-4xl dark:text-gray-200">
 							<span className="text-blue-400">Post</span> a travel route and{" "}
 							<span className="text-blue-400">invite</span> people to join.
 						</h1>
 						<form action={addTrip} className="">
 							<input type="hidden" name="user_id" value={session.user.id} />
-							<div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-4  md:grid-cols-2 xl:grid-cols-5">
+							<div className="max-w-8xl grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-4  md:grid-cols-2 xl:grid-cols-5 dark:text-white">
 								<label>
-									Departure
+									<div className="md:text-left sm:text-center">Departure</div>
 									<input
 										type="text"
 										name="departure"
 										placeholder="From where?"
 										required
-										className="input input-bordered w-full max-w-xs mx-auto"
+										className="input input-bordered w-full max-w-xs mx-auto mt-2 dark:bg-slate-800 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
 									/>
 								</label>
 								<label>
-									Destination
+									<div className="md:text-left sm:text-center">Destination</div>	
 									<input
 										type="text"
 										name="destination"
 										placeholder="Where to?"
 										required
-										className="input input-bordered w-full max-w-xs mx-auto"
+										className="input input-bordered w-full max-w-xs mx-auto mt-2 dark:bg-slate-800 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
 									/>
 								</label>
 								<label>
-									Plane
+									<div className="md:text-left sm:text-center">Plane</div>
 									<select
 										name="plane"
 										defaultValue=""
 										required
-										className="input input-bordered w-full max-w-xs mx-auto"
+										className="input input-bordered w-full max-w-xs mx-auto mt-2 dark:bg-slate-800 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
 									>
 										<option value="" disabled>
 											Select plane
@@ -186,23 +186,24 @@ export default async function ProposeTrip() {
 									</select>
 								</label>
 								<label>
-									Departure date
+									<div className="md:text-left sm:text-center">Departure date</div>
+									
 									<input
 										type="date"
 										name="departure_date"
 										required
-										className="input input-bordered w-full max-w-xs mx-auto"
+										className="input input-bordered w-full max-w-xs mx-auto mt-2 dark:bg-slate-800 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
 									/>
 								</label>
 								<label>
-									Number of passengers
+									<div className="md:text-left sm:text-center">Number of passengers</div>
 									<input
 										type="number"
 										name="no_of_passengers"
 										defaultValue="1"
 										min="1"
 										required
-										className="input input-bordered w-full max-w-xs mx-auto"
+										className="input input-bordered w-full max-w-xs mx-auto mt-2 dark:bg-slate-800 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
 									/>
 								</label>
 							</div>
