@@ -1,6 +1,6 @@
 [
-{"id":1,"departure":"Rome","user_id":1,"destination":"Cologne","departure_date":1696953600,"price":1000000,"currency":"EUR","featured":0,"flight_number":"BA 44","plane_id":1},
-{"id":2,"departure":"Miami","user_id":2,"destination":"New York","departure_date":1697299200,"price":234500,"currency":"EUR","featured":0,"flight_number":"LA 14","plane_id":4},
+{"id":1,"departure":"Rome","user_id":1,"destination":"Cologne","departure_date":1696953600,"price":1000000,"currency":"EUR","featured":1,"flight_number":"BA 44","plane_id":1},
+{"id":2,"departure":"Miami","user_id":2,"destination":"New York","departure_date":1697299200,"price":234500,"currency":"EUR","featured":1,"flight_number":"LA 14","plane_id":4},
 {"id":3,"departure":"Palma","user_id":3,"destination":"Madrid","departure_date":1697731200,"price":182300,"currency":"EUR","featured":1,"flight_number":"KJ 34","plane_id":5},
 {"id":4,"departure":"Reykjavik","user_id":4,"destination":"London","departure_date":1698163200,"price":656700,"currency":"EUR","featured":1,"flight_number":"XH 78","plane_id":2},
 {"id":5,"departure":"Dubai","user_id":5,"destination":"Beijing","departure_date":1698336000,"price":738200,"currency":"EUR","featured":1,"flight_number":"LH 448","plane_id":3}

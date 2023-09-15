@@ -28,52 +28,54 @@ export default function FlightFilter({ flights, destination }) {
   };
 
   return (
-    <>
-      <div className="flex justify-between">
-        <div className="form-control">
-          <label className="label cursor-pointer">
-            <span className="label-text">All</span>
-            <input
-              type="radio"
-              name="flight_category"
-              value="all"
-              checked={selectedCategory === "all"}
-              className="radio ml-2"
-              onChange={handleFlightCategoryChange}
-            />
-          </label>
-        </div>
-        <div className="form-control">
-          <label className="label cursor-pointer">
-            <span className="label-text">Empty Leg</span>
-            <input
-              type="radio"
-              name="flight_category"
-              value="empty_leg"
-              checked={selectedCategory === "empty_leg"}
-              className="radio ml-2"
-              onChange={handleFlightCategoryChange}
-            />
-          </label>
-        </div>
-        <div className="form-control">
-          <label className="label cursor-pointer">
-            <span className="label-text">Sharing</span>
-            <input
-              type="radio"
-              name="flight_category"
-              value="sharing"
-              checked={selectedCategory === "sharing"}
-              className="radio ml-2"
-              onChange={handleFlightCategoryChange}
-            />
-          </label>
+    <div className="">
+      <div className="flex items-center justify-center my-5">
+        <div className="flex items-center p-1 gap-6">
+          <div className="form-control flex items-center p-1 w-48 bg-blue-900 border border-blue-600 dark:border-blue-400 rounded-xl hover:bg-blue-700 btn">
+            <label className="label cursor-pointer">
+              <span className="label-text text-white font-bold">All</span>
+              <input
+                type="radio"
+                name="flight_category"
+                value="all"
+                checked={selectedCategory === "all"}
+                className="radio ml-2 hidden"
+                onChange={handleFlightCategoryChange}
+              />
+            </label>
+          </div>
+          <div className="form-control flex items-center p-1 w-48 bg-blue-900 border border-blue-600 dark:border-blue-400 rounded-xl hover:bg-blue-700 btn">
+            <label className="label cursor-pointer">
+              <span className="label-text text-white font-bold">Empty Leg</span>
+              <input
+                type="radio"
+                name="flight_category"
+                value="empty_leg"
+                checked={selectedCategory === "empty_leg"}
+                className="radio ml-2 hidden"
+                onChange={handleFlightCategoryChange}
+              />
+            </label>
+          </div>
+          <div className="form-control flex items-center p-1 w-48 bg-blue-900 border border-blue-600 dark:border-blue-400 rounded-xl hover:bg-blue-700 btn">
+            <label className="label cursor-pointer">
+              <span className="label-text text-white font-bold">Sharing</span>
+              <input
+                type="radio"
+                name="flight_category"
+                value="sharing"
+                checked={selectedCategory === "sharing"}
+                className="radio ml-2 hidden"
+                onChange={handleFlightCategoryChange}
+              />
+            </label>
+          </div>
         </div>
       </div>
 
       {flightsToShow.map((e) => (
         <EmptyLegCard key={e.id+e.flight_category} flight={e} />
       ))}
-    </>
+    </div>
   );
 }
