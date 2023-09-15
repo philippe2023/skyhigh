@@ -5,8 +5,12 @@ import { useState } from "react";
 import SearchBar from './SearchBar';
 import { useClickAway } from "@uidotdev/usehooks";
 import { useNavigationEvent } from './useNavigationEvent';
+import { usePathname } from 'next/navigation';
 
-function Search() {
+function Search({allDestinations}) {
+    // detect if current url is flights page
+    // if so, do not expand the search bar
+    const pathname = usePathname();
     const [isExpanded, setIsExpanded] = useState(false);
     const toggleExpanded = () => {
         setIsExpanded((prevIsExpanded) => !prevIsExpanded);
@@ -21,7 +25,8 @@ function Search() {
 
     return (
         <div ref={ref}>
-            {isExpanded ? (<SearchBar />) : (
+            {pathname.startsWith('/flights') ? (<></>) : (
+                isExpanded ? (<SearchBar allDestinations={allDestinations} />) : (
                     <button onClick={toggleExpanded} className="border-[1px] w-full md:w-auto py-2 rounded-full shadow-sm hover:shadow-md transition cursor-pointer">
                         <div className="flex flex-row items-center justify-between">
                             <div className="text-sm font-semibold px-6">
@@ -37,7 +42,7 @@ function Search() {
                         </div>
                     </button>
                 )
-                
+            )                
             }
         </div>
     );
