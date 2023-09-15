@@ -9,11 +9,11 @@ function getFlightData(id) {
   const flight = db
     .prepare(
       `
-    SELECT departure, destination, price, STRFTIME('%Y-%m-%d', departure_date, 'unixepoch') AS date, no_of_passengers, flight_number, user_id, User.name as userName, private_jet.image as plane_image_path, private_jet.name as plane_name, crew, private_jet.max_seats, private_jet.max_seats as max_seats, reservation_open
+    SELECT departure, destination, price, STRFTIME('%Y-%m-%d', departure_date, 'unixepoch') AS date, no_of_passengers, flight_number, user_id, User.name as userName, private_jet.image as plane_image_path, private_jet.name as plane_name, crew, private_jet.max_seats as max_seats, reservation_open
     FROM proposed_trip
     LEFT JOIN 'User'
     ON proposed_trip.user_id='User'.id 
-    left join private_jet
+    LEFT JOIN private_jet
     ON proposed_trip.plane_id=private_jet.id
     WHERE proposed_trip.id=?`
     )
@@ -39,7 +39,7 @@ async function ProposedFlightsDetailedPage({ params }) {
             </button>
           </div>
           <h1 className="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">
-            Flight <span class="text-blue-500 ">{flightData.departure}</span>  to <span class="text-blue-500 ">{flightData.destination}</span>
+            Flight <span className="text-blue-500 ">{flightData.departure}</span>  to <span className="text-blue-500 ">{flightData.destination}</span>
           </h1> 
           <p className="mt-6 text-gray-500 dark:text-gray-300">
             Departure: {flightData.departure} Airport
@@ -157,9 +157,9 @@ async function ProposedFlightsDetailedPage({ params }) {
           </div>
         </div>
       </div>
-      <div class="container mx-auto mt-8 xl:mt-12 px-6 pb-10">
+      <div className="container mx-auto mt-8 xl:mt-12 px-6 pb-10">
         <div className="relative">
-            <img class="object-cover w-full h-96 rounded-xl cursor-pointer"
+            <img className="object-cover w-full h-96 rounded-xl cursor-pointer"
             src={flightData.plane_image_path}
             alt={flightData.plane_name} />
             <div>
@@ -182,7 +182,6 @@ async function ProposedFlightsDetailedPage({ params }) {
                 HOW LONG SHOULD I ARRIVE BEFORE DEPARTURE
               </h1>
             </div>
-
             <div className="collapse-content mt-6 text-sm text-gray-500 dark:text-gray-300">
               We advise our clients to arrive 15 to 20 minutes before the
               scheduled departure. Passengers should plan enough time to go
@@ -198,7 +197,6 @@ async function ProposedFlightsDetailedPage({ params }) {
                 CAN I CHANGE THE SCHEDULE OR THE ITINERARY OF MY FLIGHT
               </h1>
             </div>
-
             <div className="collapse-content mt-6 text-sm text-gray-500 dark:text-gray-300">
               Business aviation’s clients can change their flight departure time
               or even its destination. however additional fees may apply in some
@@ -214,7 +212,6 @@ async function ProposedFlightsDetailedPage({ params }) {
                 WHAT ARE YOUR CANCELLATION TERMS ?
               </h1>
             </div>
-
             <div className="collapse-content mt-6 text-sm text-gray-500 dark:text-gray-300">
               Our cancellation policy is stated in our offers as follows:
               <ul>

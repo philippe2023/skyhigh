@@ -2,12 +2,16 @@ import { db } from "../../_utils/database";
 import FlightForm from "../../components/flight/FlightForm";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
-import { redirect } from "next/navigation";
 
 function getFlightData(id) {
   const flight = db
     .prepare(
-      "SELECT departure, destination, price, STRFTIME('%Y-%m-%d', departure_date, 'unixepoch') AS date,max_seats, available_seats, flight_number, reservation_open from empty_leg WHERE id=?"
+      `
+    SELECT departure, destination, price, STRFTIME('%Y-%m-%d', departure_date, 'unixepoch') AS date, no_of_passengers, flight_number, private_jet.image as plane_image_path, private_jet.name as plane_name, crew, private_jet.max_seats as max_seats, reservation_open
+    FROM empty_leg
+    LEFT JOIN private_jet
+    ON empty_leg.plane_id=private_jet.id
+    WHERE empty_leg.id=?`
     )
     .get(id);
   return flight;
@@ -15,7 +19,7 @@ function getFlightData(id) {
 
 async function Flights({ params }) {
   const flightData = getFlightData(params.id);
-  const bookedSeats = flightData.max_seats - flightData.available_seats;
+  const available_seats = flightData.max_seats - flightData.no_of_passengers;
   const session = await getServerSession(authOptions);
 
   return (
@@ -31,7 +35,7 @@ async function Flights({ params }) {
             </button>
           </div>
           <h1 className="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">
-            Flight <span class="text-blue-500 ">{flightData.departure}</span>  to <span class="text-blue-500 ">{flightData.destination}</span>
+            Flight <span className="text-blue-500 ">{flightData.departure}</span>  to <span className="text-blue-500 ">{flightData.destination}</span>
           </h1> 
           <p className="mt-6 text-gray-500 dark:text-gray-300">
             Departure: {flightData.departure} Airport
@@ -69,10 +73,10 @@ async function Flights({ params }) {
                 <span className="text-blue-500 ">Flugzeug GmbH</span>
               </h1>
               <p className="mt-3 text-gray-600 dark:text-gray-400">
-              {bookedSeats} {bookedSeats === 1 ? "Passenger" : "Passengers"} -{" "}
-              {flightData.available_seats}{" "}
-              {flightData.available_seats === 1 ? "Seat" : "Seats"} available
-              - 1 Flight attendant - 2h Flight
+                {flightData.no_of_passengers}{" "}
+                {flightData.no_of_passengers === 1 ? "Passenger" : "Passengers"}{" "}
+                - {available_seats} {available_seats === 1 ? "Seat" : "Seats"}{" "}
+                available - {flightData.crew} - 2h Flight
               </p>
             </div>
             <hr className="my-6 border-gray-200 dark:border-gray-700" />
@@ -127,9 +131,9 @@ async function Flights({ params }) {
                     params={{
                       id: params.id,
                       price: flightData.price,
-                      bookedSeats: bookedSeats,
+                      bookedSeats: flightData.no_of_passengers,
                       date: flightData.date,
-                      available_seats: flightData.available_seats,
+                      available_seats: available_seats,
                     }}
                   />
               ) : (
@@ -149,9 +153,9 @@ async function Flights({ params }) {
           </div>
         </div>
       </div>
-      <div class="container mx-auto mt-8 xl:mt-12 px-6 pb-10">
+      <div className="container mx-auto mt-8 xl:mt-12 px-6 pb-10">
         <div className="relative">
-            <img class="object-cover w-full h-96 rounded-xl cursor-pointer"
+            <img className="object-cover w-full h-96 rounded-xl cursor-pointer"
             src={flightData.plane_image_path}
             alt={flightData.plane_name} />
             <div>
@@ -206,6 +210,7 @@ async function Flights({ params }) {
                 WHAT ARE YOUR CANCELLATION TERMS ?
               </h1>
             </div>
+
 
             <div className="collapse-content mt-6 text-sm text-gray-500 dark:text-gray-300">
               Our cancellation policy is stated in our offers as follows:
