@@ -4,7 +4,7 @@ import Avatar from "../Avatar";
 import MenuItem from "./MenuItem";
 import Link from "next/link";
 import WorldIcon from "./WorldIcon";
-import { useNavigationEvent } from './useNavigationEvent';
+import { useNavigationEvent } from "./useNavigationEvent";
 
 function UserMenu() {
   useNavigationEvent(() => document.activeElement.blur());
@@ -28,35 +28,32 @@ function UserMenu() {
             </div>
           </label>
 
-                    <div tabIndex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 cursor-pointer dark:bg-slate-900">
-                        <Link href="/user/profile">
-                            <MenuItem item="Profile" />
-                        </Link>
-                        <Link href="/api/auth/signout">
-                            <MenuItem item="Sign out" />
-                        </Link>
-                        <hr className="border-gray-200 dark:border-gray-700 " />
-                        <Link href="/sharing">
-                            <MenuItem item="Find a trip" />
-                        </Link>
-                        <Link href="/about"><MenuItem item="About" /></Link>
-                        <hr className="border-gray-200 dark:border-gray-700 " />
-                        <Link href="/help"><MenuItem item="Help" /></Link>
-                    </div>
-                </div>
-            </div>
+          <div
+            tabIndex="0"
+            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 cursor-pointer dark:bg-slate-900"
+          >
+            <Link href="/user/profile">
+              <MenuItem item="Profile" />
+            </Link>
+            <Link href="/api/auth/signout">
+              <MenuItem item="Sign out" />
+            </Link>
+            <hr className="border-gray-200 dark:border-gray-700 " />
+            <Link href="/sharing">
+              <MenuItem item="Find a trip" />
+            </Link>
+            <Link href="/about">
+              <MenuItem item="About" />
+            </Link>
+            <hr className="border-gray-200 dark:border-gray-700 " />
+            <Link href="/help">
+              <MenuItem item="Help" />
+            </Link>
+          </div>
         </div>
-        ) : (
-            <div className="flex flex-row items-center gap-3">
-                <WorldIcon />
-                <Link
-                 href="/api/auth/signin"
-                 className="hidden md:block btn bg-white normal-case border-none text-sm font-semibold py-3 px-4 rounded-full hover:bg-slate-800 dark:hover:bg-white hover:text-gray-50 dark:hover:text-black transition curser-pointer dark:bg-gray-900 dark:text-gray-300"
-                >Log in</Link>
-            </div>
-        )}
-        </>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default UserMenu;
