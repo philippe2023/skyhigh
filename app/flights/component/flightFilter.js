@@ -25,25 +25,26 @@ export default function FlightFilter({ flights, destination, flightCategory }) {
   };
 
   return (
-    <>
+<div>
+  <div className="flex items-center justify-center my-5">
       <h1 className="text-2xl font-semibold text-center text-gray-800 lg:text-3xl dark:text-white">Available Flights{selectedDestination && ` for ${selectedDestination}`}</h1>
-      <div className="flex justify-between">
-        <div className="form-control">
+      <div className="flex items-center p-1 gap-6">
+        <div className="group form-control flex items-center p-1 w-48 bg-blue-900 border border-blue-600 dark:border-blue-400 rounded-xl hover:bg-blue-700 btn">
           <label className="label cursor-pointer">
-            <span className="label-text">All</span>
+            <span className="label-text text-white font-bold">All</span>
             <input
               type="radio"
               name="flight_category"
               value="all"
               checked={selectedCategory === "all"}
-              className="radio ml-2"
+              className="radio ml-2 hidden"
               onChange={handleFlightCategoryChange}
             />
           </label>
         </div>
-        <div className="form-control">
+        <div className="group form-control flex items-center p-1 w-48 bg-blue-900 border border-blue-600 dark:border-blue-400 rounded-xl hover:bg-blue-700 btn">
           <label className="label cursor-pointer">
-            <span className="label-text">Empty Leg</span>
+            <span className="label-text text-white font-bold">Empty Leg</span>
             <input
               type="radio"
               name="flight_category"
@@ -54,20 +55,21 @@ export default function FlightFilter({ flights, destination, flightCategory }) {
             />
           </label>
         </div>
-        <div className="form-control">
+        <div className="group form-control flex items-center p-1 w-48 bg-blue-900 border border-blue-600 dark:border-blue-400 rounded-xl hover:bg-blue-700 btn">
           <label className="label cursor-pointer">
-            <span className="label-text">Sharing</span>
+            <span className="label-text text-white font-bold">Sharing</span>
             <input
               type="radio"
               name="flight_category"
               value="sharing"
               checked={selectedCategory === "sharing"}
-              className="radio ml-2"
+              className="radio ml-2 hidden"
               onChange={handleFlightCategoryChange}
             />
           </label>
         </div>
       </div>
+    </div>
       <div className="form-control">
         <label className="label">
           <span className="label-text">Destination</span>
@@ -86,6 +88,6 @@ export default function FlightFilter({ flights, destination, flightCategory }) {
       {flightsToShow.map((e) => (
         <EmptyLegCard key={e.id+e.flight_category} flight={e} />
       ))}
-    </>
+    </div>
   );
 }
