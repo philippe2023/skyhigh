@@ -31,7 +31,7 @@ export default function FlightFilter({ flights, destination }) {
     <div className="">
       <div className="flex items-center justify-center my-5">
         <div className="flex items-center p-1 gap-6">
-          <div className="form-control flex items-center p-1 w-48 bg-blue-900 border border-blue-600 dark:border-blue-400 rounded-xl hover:bg-blue-700 btn">
+          <div className="group form-control flex items-center p-1 w-48 bg-blue-900 border border-blue-600 dark:border-blue-400 rounded-xl hover:bg-blue-700 btn">
             <label className="label cursor-pointer">
               <span className="label-text text-white font-bold">All</span>
               <input
@@ -44,7 +44,7 @@ export default function FlightFilter({ flights, destination }) {
               />
             </label>
           </div>
-          <div className="form-control flex items-center p-1 w-48 bg-blue-900 border border-blue-600 dark:border-blue-400 rounded-xl hover:bg-blue-700 btn">
+          <div className="group form-control flex items-center p-1 w-48 bg-blue-900 border border-blue-600 dark:border-blue-400 rounded-xl hover:bg-blue-700 btn">
             <label className="label cursor-pointer">
               <span className="label-text text-white font-bold">Empty Leg</span>
               <input
@@ -57,7 +57,7 @@ export default function FlightFilter({ flights, destination }) {
               />
             </label>
           </div>
-          <div className="form-control flex items-center p-1 w-48 bg-blue-900 border border-blue-600 dark:border-blue-400 rounded-xl hover:bg-blue-700 btn">
+          <div className="group form-control flex items-center p-1 w-48 bg-blue-900 border border-blue-600 dark:border-blue-400 rounded-xl hover:bg-blue-700 btn">
             <label className="label cursor-pointer">
               <span className="label-text text-white font-bold">Sharing</span>
               <input
