@@ -19,8 +19,7 @@ function Flights({searchParams}) {
     return (
         <div className="bg-white dark:bg-gray-900">
             <div className="container max-w-4xl px-6 py-10 mx-auto">
-                <h1 className="text-2xl font-semibold text-center text-gray-800 lg:text-3xl dark:text-white">Available Flights{searchParams?.destination ? ` for ${searchParams.destination}` : ""}</h1>
-                <FlightFilter flights={flights} destination={searchParams?.destination || ""} />
+                <FlightFilter flights={flights} destination={searchParams?.destination} flightCategory={searchParams?.category} />
             </div>
         </div>
     );

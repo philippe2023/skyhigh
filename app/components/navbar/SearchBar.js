@@ -3,7 +3,7 @@ import Counter from "./counter";
 import { BiSearch } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 
-function SearchBar() {
+function SearchBar({ allDestinations }) {
   const router = useRouter();
   const [searchActivated, setIsSearchActivated] = useState(false);
   //const [tripDate, setTripDate] = useState(new Date());
@@ -16,28 +16,37 @@ function SearchBar() {
     }
   };
 
-  const submit = async (event) => {
-    const searchURL = "flights?" + new URLSearchParams({destination: destination,});
+  const submit = async (_event) => {
+    const searchURL =
+      "/flights?" + new URLSearchParams({ destination: destination });
     // This redirect somehow has an Unhandled Runtime Error 'Error: NEXT_REDIRECT'
     // redirect(searchURL);
     router.push(searchURL);
   };
-
   return (
     <>
       <div className="flex flex-row self-center rounded-full border p-2">
         <button onClick={() => setIsSearchActivated(true)}>
           <p className="font-bold">Where?</p>
           {setIsSearchActivated ? (
-            <input
-              type="text"
-              name="destination"
-              placeholder="Search destinations"
-              value={destination}
-              onChange={e => setDestination(e.target.value)}
-              onKeyDown={handleKeyDown}
-              className="text-slate-900 bg-transparent border-none outline-none leading-6 placeholder-slate-400 dark:text-white"
-            />
+            <>
+              <input
+                list="destinations"
+                type="text"
+                name="destination"
+                placeholder="Search destinations"
+                value={destination}
+                onChange={(e) => setDestination(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="text-slate-900 bg-transparent border-none outline-none leading-6 placeholder-slate-400 dark:text-white"
+                autoFocus
+              />
+              <datalist id="destinations">
+                {allDestinations.map((destination) => (
+                  <option value={destination.destination}></option>
+                ))}
+              </datalist>
+            </>
           ) : (
             <div>
               <p className="text-slate-600">Search destination</p>
