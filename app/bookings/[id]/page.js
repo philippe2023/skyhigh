@@ -68,7 +68,7 @@ async function Bookings({ params }) {
 
               <div className="container flex flex-col justify-center w-full min-h-screen px-6 py-10 mx-auto lg:absolute lg:inset-x-0">
                   <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
-                      Congratulations <span className="text-blue-500">{session.user.name}</span>! <br /> Your booking is set!
+                      Congratulations <span className="text-blue-500">{`${session.user.firstName} ${session.user.lastName}`}</span>! <br /> Your booking is set!
                   </h1>
 
                   <div className="mt-10 lg:flex lg:items-center">
@@ -80,7 +80,7 @@ async function Bookings({ params }) {
                           </h1>
 
                           <p className="max-w-lg mt-6 text-gray-500 dark:text-gray-200">
-                              <span className="font-semibold">{session.user.name}</span>, a confirmation-email has been sent to <span className="font-bold">{session.user.email}</span>.
+                              <span className="font-semibold">{`${session.user.firstName} ${session.user.lastName}`}</span>, a confirmation-email has been sent to <span className="font-bold">{session.user.email}</span>.
 
                           </p>
 
