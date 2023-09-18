@@ -66,9 +66,6 @@ async function addTrip(data) {
 	if ((departure_date = data.get("departure_date")) === null) {
 		errors.set("departure_date", "Missing departure date");
 	}
-	if ((no_of_passengers = data.get("no_of_passengers")) === 0) {
-		errors.set("no_of_passengers", "Trip needs at least 1 passenger");
-	}
 
 	// return errors to client
 	if (errors.size > 0) {
@@ -83,7 +80,7 @@ async function addTrip(data) {
 			flight_number: generateFlightNumber(),
 			user_id: data.get("user_id"),
 			departure_date: departure_date,
-			no_of_passengers: no_of_passengers,
+			no_of_passengers: 0,
 			plane_id: plane,
 		});
 		redirect(`/sharing/${id}`);
@@ -148,7 +145,7 @@ export default async function ProposeTrip() {
 						</h1>
 						<form action={addTrip} className="">
 							<input type="hidden" name="user_id" value={session.user.id} />
-							<div className="max-w-8xl grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-4  md:grid-cols-2 xl:grid-cols-5 dark:text-white">
+							<div className="max-w-8xl grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-4  md:grid-cols-2 xl:grid-cols-4 dark:text-white">
 								<label>
 									<div className="md:text-left sm:text-center">Departure</div>
 									<input
@@ -191,17 +188,6 @@ export default async function ProposeTrip() {
 									<input
 										type="date"
 										name="departure_date"
-										required
-										className="input input-bordered w-full max-w-xs mx-auto mt-2 dark:bg-slate-800 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-									/>
-								</label>
-								<label>
-									<div className="md:text-left sm:text-center">Number of passengers</div>
-									<input
-										type="number"
-										name="no_of_passengers"
-										defaultValue="1"
-										min="1"
 										required
 										className="input input-bordered w-full max-w-xs mx-auto mt-2 dark:bg-slate-800 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
 									/>
