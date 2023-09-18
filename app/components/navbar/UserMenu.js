@@ -39,7 +39,7 @@ function UserMenu() {
               <MenuItem item="Sign out" />
             </Link>
             <hr className="border-gray-200 dark:border-gray-700 " />
-            <Link href="/sharing">
+            <Link href="/flights">
               <MenuItem item="Find a trip" />
             </Link>
             <Link href="/about">
