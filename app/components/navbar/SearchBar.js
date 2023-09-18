@@ -88,9 +88,9 @@ function SearchBar({ allDestinations }) {
         </div>
         <button
           onClick={submit}
-          className="px-6 text-white rounded-full bg-black flex my-auto py-4 dark:bg-slate-200 dark:text-black"
+          className="px-6 text-white rounded-full bg-black flex items-center my-auto py-4 dark:bg-slate-200 dark:text-black"
         >
-          <BiSearch className="h-5 w-5" />
+          <BiSearch className="h-5 w-5 mr-2" />
           <span>Search</span>
         </button>
       </div>
