@@ -3,7 +3,12 @@ import { db } from "../_utils/database";
 
 
 function proposedTrips() {
-    const flights = db.prepare("SELECT id, departure, destination, STRFTIME('%Y-%m-%d', departure_date, 'unixepoch') AS date, price from proposed_trip").all();
+    const flights = db.prepare(`
+    SELECT proposed_trip.id, departure, destination, STRFTIME('%Y-%m-%d', departure_date, 'unixepoch') AS date, price, no_of_passengers, private_jet.max_seats as max_seats
+    FROM proposed_trip
+    LEFT JOIN private_jet
+    ON proposed_trip.plane_id=private_jet.id`
+    ).all();
     return flights;
 }
 
