@@ -9,7 +9,7 @@ function getFlightData(id) {
   const flight = db
     .prepare(
       `
-    SELECT departure, destination, price, STRFTIME('%Y-%m-%d', departure_date, 'unixepoch') AS date, no_of_passengers, flight_number, user_id, User.name as userName, private_jet.image as plane_image_path, private_jet.name as plane_name, crew, private_jet.max_seats as max_seats, reservation_open
+    SELECT departure, destination, price, STRFTIME('%Y-%m-%d', departure_date, 'unixepoch') AS date, no_of_passengers, flight_number, user_id, User.firstName as firstName, User.lastName as lastName, private_jet.image as plane_image_path, private_jet.name as plane_name, crew, private_jet.max_seats as max_seats, reservation_open
     FROM proposed_trip
     LEFT JOIN 'User'
     ON proposed_trip.user_id='User'.id 
@@ -74,7 +74,7 @@ async function ProposedFlightsDetailedPage({ params }) {
             <div className="lg:max-w-lg">
               <h1 className="text-xl font-semibold text-gray-800 dark:text-white lg:text-2xl">
                 Flight proposed by{" "}
-                <span className="text-blue-500 ">{flightData.userName}</span>
+                <span className="text-blue-500 ">{`${session.user.firstName} ${session.user.lastName}`}</span>
               </h1>
               <p className="mt-3 text-gray-600 dark:text-gray-400">
                 {flightData.no_of_passengers}{" "}
@@ -97,7 +97,7 @@ async function ProposedFlightsDetailedPage({ params }) {
                 Experienced traveler
               </p>
               <p className="mt-1 text-gray-600 dark:text-gray-400">
-                <span className="font-bold">{flightData.userName}</span> already had 3 flights with us.
+                <span className="font-bold">{`${session.user.firstName} ${session.user.lastName}`}</span> already had 3 flights with us.
               </p>
             </div>
             <hr className="my-6 border-gray-200 dark:border-gray-700" />

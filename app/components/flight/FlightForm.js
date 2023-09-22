@@ -40,7 +40,13 @@ function FlightForm({
   const totalPrice = pricePerPerson * guests;
   const discount = 300;
   const handleGuests = (e) => {
-    setGuests(e.target.valueAsNumber);
+    const newValue = e.target.valueAsNumber;
+    // Check if newValue is NaN (not a number)
+    if (isNaN(newValue)) {
+      setGuests(1); // Set a default value of 1
+    } else {
+      setGuests(newValue);
+    }
   };
   return (
     <form
