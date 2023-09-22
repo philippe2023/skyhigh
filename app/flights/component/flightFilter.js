@@ -8,12 +8,12 @@ function combinedFilter(flight, destination, flightCategory) {
   }
   if (flightCategory !== "all") {
     return (
-      flight.destination.startsWith(destination) &&
+      flight.destination.toUpperCase().startsWith(destination.toUpperCase()) &&
       flight.flight_category === flightCategory
     );
   }
 
-  return flight.destination.startsWith(destination);
+  return flight.destination.toUpperCase().startsWith(destination.toUpperCase());
 }
 
 export default function FlightFilter({ flights, destination, flightCategory }) {
