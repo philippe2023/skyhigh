@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../api/auth/[...nextauth]/route";
 import { db } from "../../_utils/database";
+import Link from "next/link";
 
 function dateDiffInDays(a, b) {
   const _MS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -67,17 +68,35 @@ async function Bookings({ params }) {
               <div className="hidden w-3/4 min-h-screen lg:block"></div>
 
               <div className="container flex flex-col justify-center w-full min-h-screen px-6 py-10 mx-auto lg:absolute lg:inset-x-0">
-                  <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
-                      Congratulations <span className="text-blue-500">{`${session.user.firstName} ${session.user.lastName}`}</span>! <br /> Your booking is set!
-                  </h1>
+                  <div className="container flex justify-between">
+                    <h1 className="w-1/2 text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
+                        Congratulations <span className="text-blue-500">{`${session.user.firstName} ${session.user.lastName}`}</span>! <br /> Your booking is set!
+                    </h1>                    
+                      <div className="hidden md:block">
+                          <div className="flex item-center justify-center gap-6 mx-6">
+                              <div className="flex items-center p-1 border border-blue-600 dark:border-blue-400 rounded-xl">
+                                  <Link href="/flights">
+                                      <button className="btn px-4 py-2 text-sm font-medium text-white capitalize bg-blue-600 hover:bg-blue-500 md:py-3 rounded-xl md:px-12">Find Empty Leg Flights</button>
+                                  </Link>
+                              </div>
+                              <div className="flex items-center p-1 border border-green-500 dark:border-green-500 rounded-xl">
+                                  <Link href="/sharing">
+                                      <button className="btn px-4 py-2 text-sm font-medium text-white capitalize bg-green-500 hover:bg-green-600 md:py-3 rounded-xl md:px-12">Find Proposed Flights</button>
+                                  </Link>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
 
                   <div className="mt-10 lg:flex lg:items-center">
                       <img className="object-cover object-top-left w-full lg:w-[32rem] rounded-lg h-96" src="/images/destinations/miami.jpg" alt="destination" />
 
                       <div className="mt-6 lg:px-10 lg:mt-12">
-                          <h1 className="text-2xl font-semibold text-gray-800 dark:text-white lg:w-full">
-                              A mere {calculateDaysUntilFlight(departure_date)} days until an exciting journey.
-                          </h1>
+                        <div className="flex justify-between">
+                            <div>
+                              <h1 className="text-2xl font-semibold text-gray-800 dark:text-white lg:w-full">
+                                  A mere {calculateDaysUntilFlight(departure_date)} days until an exciting journey.
+                              </h1>
 
                           <p className="max-w-lg mt-6 text-gray-500 dark:text-gray-200">
                               <span className="font-semibold">{`${session.user.firstName} ${session.user.lastName}`}</span>, a confirmation-email has been sent to <span className="font-bold">{session.user.email}</span>.
