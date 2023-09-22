@@ -20,7 +20,7 @@ function About() {
                 <div className="container px-6 py-10 mx-auto -mt-72 sm:-mt-80 md:-mt-96">
                     <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-3">
                         <div className="flex flex-col items-center p-4 border sm:p-6 rounded-xl dark:border-gray-700">
-                            <img className="object-cover w-full rounded-xl aspect-square" src="/images/team/jeanphilippe.png" alt="" />
+                            <img className="object-cover w-full rounded-xl aspect-square" src="/images/team/jeanphilippe.jpg" alt="" />
                             <h1 className="mt-4 text-2xl font-semibold text-gray-700 capitalize dark:text-white">Jean Philippe Auguste</h1>
                             <p className="mt-2 text-gray-500 capitalize dark:text-gray-300">Full Stack Developer</p>
                             <div className="flex mt-3 -mx-2">
