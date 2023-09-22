@@ -70,7 +70,7 @@ async function Bookings({ params }) {
               <div className="container flex flex-col justify-center w-full min-h-screen px-6 py-10 mx-auto lg:absolute lg:inset-x-0">
                   <div className="container flex justify-between">
                     <h1 className="w-1/2 text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">
-                        Congratulations <span className="text-blue-500">{`${session.user.firstName} ${session.user.lastName}`}</span>! <br /> Your booking is set!
+                        Congratulations <span className="text-blue-500">{session.user.name}</span>! <br /> Your booking is set!
                     </h1>                    
                       <div className="hidden md:block">
                           <div className="flex item-center justify-center gap-6 mx-6">
@@ -98,10 +98,17 @@ async function Bookings({ params }) {
                                   A mere {calculateDaysUntilFlight(departure_date)} days until an exciting journey.
                               </h1>
 
-                          <p className="max-w-lg mt-6 text-gray-500 dark:text-gray-200">
-                              <span className="font-semibold">{`${session.user.firstName} ${session.user.lastName}`}</span>, a confirmation-email has been sent to <span className="font-bold">{session.user.email}</span>.
+                              <p className="max-w-lg mt-6 text-gray-500 dark:text-gray-200">
+                                  <span className="font-semibold">{session.user.name}</span>, a confirmation-email has been sent to <span className="font-bold">{session.user.email}</span>.
+                              </p>
+                            </div>
+                            <Link href="/user/profile">
+                                <button className="text-xs text-gray-800 underline transition-colors duration-300 dark:text-white dark:hover:text-gray-400 hover:text-gray-600 focus:outline-none">
+                                    Manage my bookings
+                                </button>
+                            </Link>
+                        </div>
 
-                          </p>
 
                           <div className="py-12">
                             <div className="grid grid-cols-3 max-md:grid-cols-1 container  mx-auto justify-between">
